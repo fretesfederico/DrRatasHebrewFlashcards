@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Rata's Basics of Biblical Hebrew Vocab Flashcards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .app-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 60px 30px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+            background-image: url('https://pub-52c9a91481ce452b90d09e9e76c6aacc.r2.dev/Vocabimages/adonai.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .header h1 {
+            position: relative;
+            z-index: 1;
+            color: #1f2937;
+            font-size: 2.2rem;
+            margin: 0;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+            font-weight: 700;
+            text-align: center;
+            max-width: 90%;
+            line-height: 1.3;
+        }
+
+        .lesson-selector {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .home-progress-stats {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .home-progress-stats h3 {
+            margin: 0 0 15px 0;
+            color: #1f2937;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .progress-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .progress-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .progress-card h4 {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-card .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .progress-card.mastered {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+
+        .progress-card.mastered h4,
+        .progress-card.mastered .number {
+            color: white;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+
+        .progress-summary {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .progress-dot.total { background: #6b7280; }
+        .progress-dot.easy { background: #10b981; }
+        .progress-dot.medium { background: #f59e0b; }
+        .progress-dot.hard { background: #ef4444; }
+        .progress-dot.mastered { background: #8b5cf6; }
+
+        .analytics-section {
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .analytics-section h4 {
+            color: #1f2937;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .analytic-item {
+            text-align: center;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .analytic-item .label {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .analytic-item .value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .lesson-selection-section {
+            margin-bottom: 20px;
+        }
+
+        .instructions-section {
+            margin-bottom: 20px;
+        }
+
+        .instructions-toggle-btn {
+            width: 100%;
+            background: #f0f9ff;
+            border: 2px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e40af;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .instructions-toggle-btn:hover {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+
+        .instructions-toggle-btn.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .instructions-content {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background: #f0f9ff;
+            border: 2px solid #bfdbfe;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .instructions-content.expanded {
+            display: block;
+        }
+
+        .instruction-group {
+            margin-bottom: 20px;
+        }
+
+        .instruction-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .instruction-group h4 {
+            color: #1e40af;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .instruction-group ul {
+            margin-left: 20px;
+            color: #374151;
+        }
+
+        .instruction-group ul ul {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .instruction-group li {
+            margin-bottom: 4px;
+        }
+
+        .instructions-content kbd {
+            background: #e5e7eb;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .lesson-toggle-btn {
+            width: 100%;
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lesson-toggle-btn:hover {
+            border-color: #667eea;
+            background: #eef2ff;
+        }
+
+        .lesson-toggle-btn.active {
+            border-color: #667eea;
+            background: #eef2ff;
+        }
+
+        .toggle-icon {
+            transition: transform 0.2s;
+        }
+
+        .lesson-toggle-btn.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .lesson-grid {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .lesson-grid.expanded {
+            display: block;
+        }
+
+        .lesson-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .lesson-control-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 100px;
+        }
+
+        .lesson-control-btn.select-all {
+            background: #10b981;
+            color: white;
+        }
+
+        .lesson-control-btn.select-all:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .lesson-control-btn.clear-all {
+            background: #ef4444;
+            color: white;
+        }
+
+        .lesson-control-btn.clear-all:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        .lesson-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .lesson-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lesson-checkbox:hover {
+            border-color: #667eea;
+            background: #f8fafc;
+        }
+
+        .lesson-checkbox.selected {
+            border-color: #667eea;
+            background: #eef2ff;
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f8fafc;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #eef2ff;
+        }
+
+        .start-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            align-self: center;
+        }
+
+        .start-button:hover:not(:disabled) {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .start-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .study-view {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        .study-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .back-button:hover {
+            background: #4b5563;
+            transform: translateY(-1px);
+        }
+
+        .session-info {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .card-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .flashcard {
+            width: 400px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: white;
+        }
+
+        .card-front {
+            border: 3px solid #3b82f6;
+        }
+
+        .card-back {
+            border: 3px solid #10b981;
+            transform: rotateY(180deg);
+        }
+
+        .difficulty-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #e5e7eb;
+            background: white;
+            display: none;
+            z-index: 10;
+        }
+
+        .difficulty-indicator.easy {
+            background: #10b981;
+            border-color: #059669;
+        }
+
+        .difficulty-indicator.medium {
+            background: #f59e0b;
+            border-color: #d97706;
+        }
+
+        .difficulty-indicator.hard {
+            background: #ef4444;
+            border-color: #dc2626;
+        }
+
+        .difficulty-indicator.mastered {
+            background: #8b5cf6;
+            border-color: #7c3aed;
+        }
+
+        .mastery-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: none;
+            z-index: 10;
+        }
+
+        .hebrew-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            direction: rtl;
+            text-align: right;
+            color: #1f2937;
+            line-height: 1.2;
+            font-family: "SBL Hebrew", "Ezra SIL", "Times New Roman", "Noto Serif Hebrew", "Frank Ruehl CLM", serif;
+        }
+
+        .english-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            color: #1f2937;
+            line-height: 1.3;
+        }
+
+        .navigation-controls {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 100px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #4b5563;
+            transform: translateY(-1px);
+        }
+
+        .nav-btn:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .card-counter {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .difficulty-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .difficulty-btn.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .difficulty-btn.easy {
+            background: #10b981;
+            color: white;
+        }
+
+        .difficulty-btn.medium {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .difficulty-btn.hard {
+            background: #ef4444;
+            color: white;
+        }
+
+        .difficulty-btn:hover.active {
+            transform: translateY(-2px);
+        }
+
+        .instructions {
+            margin-top: 20px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .flash-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .flash-overlay.flash-easy {
+            background: rgba(16, 185, 129, 0.3);
+        }
+
+        .flash-overlay.flash-medium {
+            background: rgba(245, 158, 11, 0.3);
+        }
+
+        .flash-overlay.flash-hard {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        .flash-overlay.active {
+            opacity: 1;
+        }
+
+        .completion-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .modal-content h2 {
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .review-message {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .flashcard {
+                width: 320px;
+                height: 240px;
+            }
+
+            .hebrew-text {
+                font-size: 2.5rem;
+            }
+
+            .english-text {
+                font-size: 1.4rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navigation-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-btn {
+                min-width: 120px;
+            }
+
+            .lesson-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .progress-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .analytics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>Dr. Rata's Basics of Biblical Hebrew for Seminarians Vocab Flashcards</h1>
+        </div>
+
+        <!-- Lesson Selector View -->
+        <div id="lessonSelector" class="lesson-selector">
+            <!-- Progress Statistics -->
+            <div class="home-progress-stats">
+                <h3>Your Learning Progress</h3>
+                
+                <div class="progress-overview">
+                    <div class="progress-card">
+                        <h4>Total Studied</h4>
+                        <div class="number" id="totalStudiedNumber">0</div>
+                    </div>
+                    <div class="progress-card mastered">
+                        <h4>Mastered</h4>
+                        <div class="number" id="masteredNumber">0</div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="homeProgressFill"></div>
+                </div>
+                <div class="progress-summary" id="homeProgressSummary">
+                    <!-- Progress stats will be shown here -->
+                </div>
+
+                <div class="analytics-section">
+                    <h4>Learning Analytics</h4>
+                    <div class="analytics-grid" id="analyticsGrid">
+                        <!-- Analytics will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="instructions-section">
+                <button class="instructions-toggle-btn" id="instructionsToggleBtn">
+                    <span>📖 How to Use</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="instructions-content" id="instructionsContent">
+                    <div class="instruction-group">
+                        <h4>Getting Started</h4>
+                        <ul>
+                            <li><strong>Select Lessons:</strong> Click "Select Lessons" to choose which vocabulary sets to study</li>
+                            <li><strong>Study Mode:</strong> Learn new words or review all selected lessons</li>
+                            <li><strong>Review Mode (SRS):</strong> Use spaced repetition to review previously studied words</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="instruction-group">
+                        <h4>During Study</h4>
+                        <ul>
+                            <li><strong>Flip Cards:</strong> Click the card or press <kbd>Space</kbd> to see the translation</li>
+                            <li><strong>Rate Difficulty:</strong> After flipping, rate how well you knew the word:
+                                <ul>
+                                    <li><kbd>←</kbd> or click "Hard" - You didn't know it</li>
+                                    <li><kbd>↓</kbd> or click "Medium" - You knew it with effort</li>
+                                    <li><kbd>→</kbd> or click "Easy" - You knew it immediately</li>
+                                </ul>
+                            </li>
+                            <li><strong>Navigation:</strong> Use Previous/Next buttons or arrow keys when card is not flipped</li>
+                            <li><strong>Return Home:</strong> Press <kbd>Esc</kbd> or click "← Change Lessons"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="instruction-group">
+                        <h4>Mastery System</h4>
+                        <ul>
+                            <li><strong>Spaced Repetition:</strong> Words appear for review based on how well you know them</li>
+                            <li><strong>Mastery:</strong> Rate a word "Easy" 3 times in a row to master it</li>
+                            <li><strong>Progress Tracking:</strong> View your retention rate, study streak, and analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapsible Lesson Selection -->
+            <div class="lesson-selection-section">
+                <button class="lesson-toggle-btn" id="lessonToggleBtn">
+                    <span>Select Lessons</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+                <div class="lesson-grid" id="lessonGrid">
+                    <div class="lesson-controls">
+                        <button class="lesson-control-btn select-all" id="selectAllBtn">Select All</button>
+                        <button class="lesson-control-btn clear-all" id="clearAllBtn">Clear All</button>
+                    </div>
+                    <div class="lesson-checkboxes" id="lessonCheckboxes">
+                        <!-- Lesson checkboxes will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="options">
+                <div class="option" id="shuffleOption">
+                    <input type="checkbox" id="shuffleCards">
+                    <label for="shuffleCards">Shuffle cards</label>
+                </div>
+                <div class="option" id="reviewOption">
+                    <input type="checkbox" id="reviewMode">
+                    <label for="reviewMode">Review Mode (SRS)</label>
+                </div>
+            </div>
+
+            <button class="start-button" id="startButton" disabled>Start Study Session</button>
+        </div>
+
+        <!-- Study View -->
+        <div id="studyView" class="study-view">
+            <div class="study-header">
+                <button class="back-button" id="backButton">← Change Lessons</button>
+                <div class="current-session-info">
+                    <span class="session-info" id="sessionInfo">Session Progress</span>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="flash-overlay" id="flashOverlay"></div>
+                    <div class="card-face card-front">
+                        <div class="mastery-badge" id="masteryBadge">MASTERED</div>
+                        <div class="difficulty-indicator" id="difficultyIndicator"></div>
+                        <div class="hebrew-text" id="hebrewText"></div>
+                    </div>
+                    <div class="card-face card-back">
+                        <div class="mastery-badge" id="masteryBadgeBack">MASTERED</div>
+                        <div class="difficulty-indicator" id="difficultyIndicatorBack"></div>
+                        <div class="english-text" id="englishText"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-controls">
+                <button class="nav-btn" id="prevBtn">← Previous</button>
+                <span class="card-counter" id="cardCounter">1 / 10</span>
+                <button class="nav-btn" id="nextBtn">Next →</button>
+            </div>
+
+            <div class="controls">
+                <button class="difficulty-btn hard" id="hardBtn">Hard (←)</button>
+                <button class="difficulty-btn medium" id="mediumBtn">Medium (↓)</button>
+                <button class="difficulty-btn easy" id="easyBtn">Easy (→)</button>
+            </div>
+
+            <div class="instructions">
+                Click card or press Space to flip • Use arrow keys or click buttons to rate difficulty • Use Previous/Next to navigate • Press Esc to return
+            </div>
+
+            <div class="review-message" id="reviewMessage" style="display: none;">
+                No words to review yet. Study some lessons first to build your review deck!
+            </div>
+        </div>
+    </div>
+
+    <!-- Completion Modal -->
+    <div class="completion-modal" id="completionModal">
+        <div class="modal-content">
+            <h2>🎉 Session Completed!</h2>
+            <p>Great job studying! Your progress has been saved.</p>
+            <button class="start-button" onclick="showLessonSelector()">Study More</button>
+        </div>
+    </div>
+
+    <script>
+        // Vocabulary data
+        const vocabulary = {
+            lesson1: [
+                { hebrew: "יהוה", english: "The LORD, Adonai, YHWH, Ha-Shem" },
+                { hebrew: "מֶלֶךְ", english: "king" }
+            ],
+            lesson2: [
+                { hebrew: "אֲנִי", english: "I" },
+                { hebrew: "אַתָּה", english: "you (ms)" },
+                { hebrew: "עֶבֶד", english: "servant" },
+                { hebrew: "בֵּן", english: "son" },
+                { hebrew: "מִי", english: "who" },
+                { hebrew: "אַתְּ", english: "you (fs)" }
+            ],
+            lesson3: [
+                { hebrew: "הִיא", english: "she, that (fs)" },
+                { hebrew: "הוּא", english: "he, that (ms)" },
+                { hebrew: "שָלוֹם", english: "peace" },
+                { hebrew: "אָב", english: "father" },
+                { hebrew: "טוֹב", english: "good" },
+                { hebrew: "כִּי", english: "because, for, since" },
+                { hebrew: "נָבִיא", english: "prophet" },
+                { hebrew: "מָה", english: "what, how" },
+                { hebrew: "זֹאת", english: "this (fs)" },
+                { hebrew: "זֶה", english: "this (ms)" }
+            ],
+            lesson4: [
+                { hebrew: "עִיר", english: "city (f) [irregular plural עָרִים]" },
+                { hebrew: "אֶרֶץ", english: "land, earth (f)" },
+                { hebrew: "אִישׁ", english: "man (irregular plural אֲנָשִׁים)" },
+                { hebrew: "אִשָּׁה", english: "woman (irregular plural נָשִׁים)" },
+                { hebrew: "לֹא", english: "no, not" },
+                { hebrew: "אֵל", english: "God, god" },
+                { hebrew: "הִנֵּה", english: "behold" },
+                { hebrew: "הִנְנִי", english: "here I am" },
+                { hebrew: "סֵפֶר", english: "book (m)" },
+                { hebrew: "דָּבָר", english: "word, matter (m)" }
+            ],
+            lesson5: [
+                { hebrew: "יוֹם", english: "day (m) [irr. plural יָמִים]" },
+                { hebrew: "וְ", english: "and, but, even, also" },
+                { hebrew: "בֹּקֶר", english: "morning" },
+                { hebrew: "עֶרֶב", english: "evening" },
+                { hebrew: "אֲדֹנִי; אֲדוֹן", english: "master, lord; Lord (of God)" },
+                { hebrew: "אֱלֹהִים", english: "God, gods" },
+                { hebrew: "אֶל", english: "to, toward" },
+                { hebrew: "נַעַר", english: "young man" },
+                { hebrew: "נַעֲרָה", english: "young woman" },
+                { hebrew: "בְּ", english: "in, at, with" },
+                { hebrew: "כְּ", english: "like, as" },
+                { hebrew: "לְ", english: "to, for" }
+            ],
+            lesson6: [
+                { hebrew: "אָח", english: "brother [irr. pl. אַחִים]" },
+                { hebrew: "גּוֹי", english: "nation, people" },
+                { hebrew: "דֶּרֶךְ", english: "road (m/f)" },
+                { hebrew: "נֶפֶשׁ", english: "soul, life (f)" },
+                { hebrew: "קוֹל", english: "voice, sound" },
+                { hebrew: "תּוֹרָה", english: "law, teaching" },
+                { hebrew: "מַיִם", english: "water" },
+                { hebrew: "כֹּהֵן", english: "priest" },
+                { hebrew: "לֵב/לֵבָב", english: "heart, mind" },
+                { hebrew: "בַּת", english: "daughter (irr. pl בָּנוֹת)" }
+            ],
+            lesson7: [
+                { hebrew: "כֹּל, כָּל־", english: "all, each, every" },
+                { hebrew: "מִן", english: "from, more than" },
+                { hebrew: "אֵת, אֶת־", english: "definite direct object marker (not translated)" },
+                { hebrew: "לִפְנֵי", english: "before, in front of" },
+                { hebrew: "גָּדוֹל", english: "great, big" },
+                { hebrew: "מְאֹד", english: "very, exceedingly" },
+                { hebrew: "שָׁמַע", english: "to hear, obey" },
+                { hebrew: "בַּיִת", english: "house (irr. pl. בָּתִּים)" },
+                { hebrew: "עַל", english: "on, upon, according to" },
+                { hebrew: "אֶחָד", english: "one (ms)" },
+                { hebrew: "שָׁמַר", english: "to keep, guard" },
+                { hebrew: "אֱמֶת", english: "faithfulness, truth" },
+                { hebrew: "חֶסֶד", english: "steadfast love, loyalty" }
+            ],
+            lesson8: [
+                { hebrew: "הָיָה", english: "to be (he was)" },
+                { hebrew: "שָׁכֵן", english: "neighbor" },
+                { hebrew: "שֵׁם", english: "name" },
+                { hebrew: "קָרוֹב", english: "near, imminent" },
+                { hebrew: "יָשָׁר", english: "just, upright" },
+                { hebrew: "יָפֶה", english: "beautiful (f)" },
+                { hebrew: "צַדִּיק", english: "righteous, just" },
+                { hebrew: "קָשֶׁה", english: "difficult, hard" },
+                { hebrew: "קָדוֹשׁ", english: "holy, set apart" },
+                { hebrew: "חָכָם", english: "wise, skillful" },
+                { hebrew: "רָחוֹק", english: "far, distant" },
+                { hebrew: "שָׁמַיִם", english: "heavens" },
+                { hebrew: "עָבַד", english: "to serve, work" },
+                { hebrew: "מָלַךְ", english: "to reign, be king" }
+            ],
+            lesson9: [
+                { hebrew: "וַיְהִי", english: "Qal perfect 3ms + waw consecutive < היה" },
+                { hebrew: "אֵין", english: "there is/are not" },
+                { hebrew: "יֵשׁ", english: "there is, there are" },
+                { hebrew: "אֲשֶׁר", english: "who, which, that" },
+                { hebrew: "עָשָׂה", english: "to do, make" },
+                { hebrew: "כֹה", english: "thus, so" },
+                { hebrew: "אָכַל", english: "to eat" },
+                { hebrew: "הָלַךְ", english: "to go, walk" },
+                { hebrew: "אָמַר", english: "to say" },
+                { hebrew: "יַחַד", english: "together (adv.), community" },
+                { hebrew: "רָאָה", english: "to see, perceive" },
+                { hebrew: "גַּם", english: "also, indeed" }
+            ],
+            lesson10: [
+                { hebrew: "יָשַׁב", english: "to sit, live, dwell" },
+                { hebrew: "כֶּסֶף", english: "silver, money" },
+                { hebrew: "מָצָא", english: "to find" },
+                { hebrew: "יָצָא", english: "to go/come out" },
+                { hebrew: "לָקַח", english: "to take, receive" },
+                { hebrew: "לָמָּה", english: "why" },
+                { hebrew: "לֵאמֹר", english: "saying (used to introduce a direct quote)" },
+                { hebrew: "אָחוֹת", english: "sister (irregular plural אֲחָיוֹת)" },
+                { hebrew: "רֹאשׁ", english: "head (irregular plural רָאשִׁים)" },
+                { hebrew: "חַיִּים", english: "life (ms)" },
+                { hebrew: "מָקוֹם", english: "place (ms. irr. pl. מְקֹמוֹת)" },
+                { hebrew: "מָשָׁל", english: "proverb, saying" },
+                { hebrew: "מַדּוּעַ", english: "why" },
+                { hebrew: "עַתָּה", english: "now, then" },
+                { hebrew: "קָטֹן", english: "small, insignificant" }
+            ],
+            lesson11: [
+                { hebrew: "בָּטַח", english: "to trust, be confident" },
+                { hebrew: "בָּכָה", english: "to weep (for)" },
+                { hebrew: "שָׂרַף", english: "to burn, destroy" },
+                { hebrew: "לָבַשׁ", english: "to clothe, be clothed" },
+                { hebrew: "פָּתַח", english: "to open" },
+                { hebrew: "פֶּתַח", english: "entrance, door" },
+                { hebrew: "דּוֹר", english: "generation" },
+                { hebrew: "חוּץ", english: "outside, street" },
+                { hebrew: "מְלָאכָה", english: "work, occupation" },
+                { hebrew: "פַּר", english: "bull, ox" },
+                { hebrew: "רֹב", english: "multitude, abundance" },
+                { hebrew: "שָׂפָה", english: "lip, language, edge" },
+                { hebrew: "עֲבֹדָה", english: "work, service, worship" },
+                { hebrew: "עֵדָה", english: "congregation, assembly" }
+            ],
+            lesson12: [
+                { hebrew: "וַיְהִי", english: "Qal Impf 3ms + waw consecutive < הָיָה" },
+                { hebrew: "זָכַר", english: "to remember, mention" },
+                { hebrew: "יָדַע", english: "to know, notice" },
+                { hebrew: "יָלַד", english: "to bring forth, bear" },
+                { hebrew: "יֶלֶד", english: "boy, male child" },
+                { hebrew: "קָרָא", english: "to call, proclaim" },
+                { hebrew: "עֵת", english: "time" },
+                { hebrew: "אָהַב", english: "to love" },
+                { hebrew: "אַהֲבָה", english: "love" },
+                { hebrew: "בְּרִית", english: "covenant" },
+                { hebrew: "בִּינָה", english: "understanding, discernment" },
+                { hebrew: "חָכְמָה", english: "wisdom, skill" },
+                { hebrew: "בֵּין", english: "between" },
+                { hebrew: "מִצְרַיִם", english: "Egypt" },
+                { hebrew: "שָׁנָה", english: "year" }
+            ],
+            lesson13: [
+                { hebrew: "עָמַד", english: "to stand" },
+                { hebrew: "קוּם", english: "to rise, arise, stand" },
+                { hebrew: "נָתַן", english: "to give, put" },
+                { hebrew: "בָּנָה", english: "to build" },
+                { hebrew: "עָלָה", english: "to go up" },
+                { hebrew: "רַע", english: "evil, bad (also as רָע)" }
+            ],
+            lesson14: [
+                { hebrew: "אַל", english: "no, not" },
+                { hebrew: "קוּם", english: "rise (2ms impv.)" },
+                { hebrew: "שִׂים", english: "put, give (2ms impv.)" },
+                { hebrew: "בּוֹא", english: "come, enter (2ms impv.)" },
+                { hebrew: "תֵּן", english: "give (2ms impv.)" },
+                { hebrew: "קַח", english: "take (2ms impv.)" },
+                { hebrew: "לֵךְ", english: "go (2ms impv.)" },
+                { hebrew: "הֱיֵה", english: "be (2ms impv.)" },
+                { hebrew: "יְהִי", english: "let it be (3ms jus.)" },
+                { hebrew: "עָזַב", english: "to leave, abandon" },
+                { hebrew: "עָזַר", english: "to help" },
+                { hebrew: "צוּר", english: "rock" },
+                { hebrew: "צֶלֶם", english: "image, likeness" },
+                { hebrew: "עוֹלָם", english: "eternity, forever (world)" }
+            ],
+            lesson15: [
+                { hebrew: "בֵּרַךְ/בָּרֵךְ", english: "to bless (Pi)" },
+                { hebrew: "דִּבֵּר", english: "to speak (Pi)" },
+                { hebrew: "כִּלָּה", english: "to complete, finish" },
+                { hebrew: "כִּבֵּד", english: "to make heavy, honor" },
+                { hebrew: "גָּדַל", english: "to be(come) great, strong" },
+                { hebrew: "הִלֵּל", english: "to praise (Pi)" },
+                { hebrew: "הֵיכָל", english: "palace, temple" },
+                { hebrew: "שָׁפַט", english: "to judge, govern" },
+                { hebrew: "צְדָקָה", english: "righteousness" },
+                { hebrew: "קָבַץ", english: "to gather" },
+                { hebrew: "צִוָּה", english: "to command (Pi)" },
+                { hebrew: "שִׁיר", english: "song, to sing" },
+                { hebrew: "שָׁרַת", english: "to minister, serve (Pi)" },
+                { hebrew: "עַיִן", english: "eye, spring (cstr. עֵין)" }
+            ],
+            lesson16: [
+                { hebrew: "כָּתַב", english: "to write" },
+                { hebrew: "כָּרַת", english: "to cut" },
+                { hebrew: "יָרַד", english: "to go down" },
+                { hebrew: "מוּת", english: "to die, kill" },
+                { hebrew: "נָשָׂא", english: "to lift, carry" },
+                { hebrew: "עָבַר", english: "to pass over, through" },
+                { hebrew: "יָרֵא", english: "to fear, be afraid" },
+                { hebrew: "מָלֵא", english: "to be full, fill" },
+                { hebrew: "חָזַק", english: "to be(come) strong" },
+                { hebrew: "שָׁלַח", english: "to send, stretch out" },
+                { hebrew: "שָׁכַב", english: "to lie down, have sexual intercourse" },
+                { hebrew: "קָטֹן", english: "small, insignificant" },
+                { hebrew: "רָפָא", english: "to heal (someone)" }
+            ],
+            lesson17: [
+                { hebrew: "רְאוֹת", english: "Qal Infinitive Construct of רָאָה (seeing/to see)" },
+                { hebrew: "דַּעַת", english: "Qal Infinitive Construct of יָדַע (knowing/to know)" },
+                { hebrew: "עֲשׂוֹת", english: "Qal Infinitive Construct of עָשָׂה (doing/to do)" },
+                { hebrew: "הֱיוֹת", english: "Qal Infinitive Construct of הָיָה (being/to be)" },
+                { hebrew: "תֵּת", english: "Qal Infinitive Construct of נָתַן (giving/to give)" },
+                { hebrew: "שֶׁבֶת", english: "Qal Infinitive Construct of יָשַׁב (dwelling/to dwell)" },
+                { hebrew: "לֶכֶת", english: "Qal Infinitive Construct of הָלַךְ (going/to go)" },
+                { hebrew: "צֵאת", english: "Qal Infinitive Construct of יָצָא (going out/to go out)" },
+                { hebrew: "שָׂמַח", english: "to rejoice, be glad, be joyful" },
+                { hebrew: "אָחַז", english: "to seize, grasp, take" },
+                { hebrew: "מוּסָר", english: "correction, discipline, instruction" },
+                { hebrew: "בִּינָה", english: "understanding, intelligence, insight" }
+            ],
+            lesson18: [
+                { hebrew: "הַ", english: "This is the interrogative particle" },
+                { hebrew: "זָבַח", english: "to slaughter, sacrifice" },
+                { hebrew: "חָנָה", english: "to decline, encamp" },
+                { hebrew: "נָסַע", english: "to pull up, depart" },
+                { hebrew: "פָּנָה", english: "to turn" },
+                { hebrew: "פָּתַח", english: "to open" },
+                { hebrew: "רָדַף", english: "to pursue, persecute" },
+                { hebrew: "שָׁאַר", english: "to remain, survive" },
+                { hebrew: "נוּחַ", english: "to rest, settle down" },
+                { hebrew: "בָּמָה", english: "(cultic) high place, hill" },
+                { hebrew: "מִשְׁכָּן", english: "dwelling place, tabernacle" },
+                { hebrew: "נַחַל", english: "stream, brook" },
+                { hebrew: "רָעֵב", english: "famine, hunger" },
+                { hebrew: "רָעֵב", english: "hungry (adj.)" },
+                { hebrew: "קָדַשׁ", english: "to be holy, sanctify" }
+            ],
+            lesson19: [
+                { hebrew: "בָּטַח", english: "to trust, be confident" },
+                { hebrew: "בָּכָה", english: "to weep (for)" },
+                { hebrew: "שָׂרַף", english: "to burn, destroy" },
+                { hebrew: "לָבַשׁ", english: "to clothe, be clothed" },
+                { hebrew: "פָּתַח", english: "to open" },
+                { hebrew: "פֶּתַח", english: "entrance, door" },
+                { hebrew: "דּוֹר", english: "generation" },
+                { hebrew: "חוּץ", english: "outside, street" },
+                { hebrew: "מְלָאכָה", english: "work, occupation" },
+                { hebrew: "פַּר", english: "bull, ox" },
+                { hebrew: "רֹב", english: "multitude, abundance" },
+                { hebrew: "שָׂפָה", english: "lip, language, edge" },
+                { hebrew: "עֲבֹדָה", english: "work, service, worship" },
+                { hebrew: "עֵדָה", english: "congregation, assembly" }
+            ],
+            lesson20: [
+                { hebrew: "אֶחָד", english: "one (m)" },
+                { hebrew: "אַחַת", english: "one (f)" },
+                { hebrew: "שְׁנַיִם", english: "two (m)" },
+                { hebrew: "שְׁתַּיִם", english: "two (f)" },
+                { hebrew: "שָׁלֹשׁ", english: "three" },
+                { hebrew: "אַרְבַּע", english: "four" },
+                { hebrew: "חָמֵשׁ", english: "five" },
+                { hebrew: "שֵׁשׁ", english: "six" },
+                { hebrew: "שֶׁבַע", english: "seven" },
+                { hebrew: "שְׁמֹנֶה", english: "eight" },
+                { hebrew: "תֵּשַׁע", english: "nine" },
+                { hebrew: "עֶשֶׂר", english: "ten" },
+                { hebrew: "אַחַד עָשָׂר", english: "eleven" },
+                { hebrew: "שְׁנֵים עָשָׂר", english: "twelve" },
+                { hebrew: "מֵאָה", english: "one hundred" },
+                { hebrew: "אֶלֶף", english: "one thousand" },
+                { hebrew: "רְבָבָה", english: "ten thousand" },
+                { hebrew: "רִאשׁוֹן", english: "first" },
+                { hebrew: "שֵׁנִי", english: "second (m)" },
+                { hebrew: "שֵׁנִית", english: "second (f)" },
+                { hebrew: "רְבִיעִי", english: "fourth (m)" },
+                { hebrew: "רְבִיעִית", english: "fourth (f)" }
+            ],
+            lesson21: [
+                { hebrew: "אָסַר", english: "to tie, fetter" },
+                { hebrew: "זָעַק", english: "to cry (out), summon" },
+                { hebrew: "חָזָה", english: "to see, perceive" },
+                { hebrew: "חָנַן", english: "to be gracious, to favor" },
+                { hebrew: "מָאַס", english: "to refuse, reject" },
+                { hebrew: "רָחַץ", english: "to wash, bathe" },
+                { hebrew: "שָׂכַל", english: "to understand, prosper" },
+                { hebrew: "אָמַן", english: "to be faithful, believe" },
+                { hebrew: "כּוּן", english: "to be firm, establish" },
+                { hebrew: "יָשַׁע", english: "to save, be saved (Ni)" },
+                { hebrew: "נָהָר", english: "river, stream" },
+                { hebrew: "רֹעֶה", english: "shepherd" }
+            ],
+            lesson22: [
+                { hebrew: "רוּם", english: "to be high, rise" },
+                { hebrew: "גָּלָה", english: "to uncover, reveal" },
+                { hebrew: "בָּחַר", english: "to choose, test" },
+                { hebrew: "חָפֵץ", english: "to delight in, desire" },
+                { hebrew: "דָּרַשׁ", english: "to seek, ask for" },
+                { hebrew: "שָׁכַן", english: "to settle, dwell, inhabit" },
+                { hebrew: "שָׁאַל", english: "to ask (of), request" },
+                { hebrew: "הָרַג", english: "to kill, slay" },
+                { hebrew: "מִסְפָּר", english: "number" },
+                { hebrew: "שֶׁמֶשׁ", english: "sun" },
+                { hebrew: "בַּעַל", english: "master, husband, Baal" },
+                { hebrew: "יַעַן", english: "on account of" }
+            ],
+            lesson23: [
+                { hebrew: "טָהוֹר", english: "clean, pure" },
+                { hebrew: "כְּסִיל", english: "fool" },
+                { hebrew: "עָנִי", english: "poor, humble" },
+                { hebrew: "שֶׁמֶן", english: "oil, fat" },
+                { hebrew: "שֹׁפֵט", english: "judge, deliverer" },
+                { hebrew: "אֵיךְ", english: "how; (also as אֵיכָה)" },
+                { hebrew: "אֹהֶל", english: "tent" },
+                { hebrew: "הָרָה", english: "to conceive" },
+                { hebrew: "פָּנָה", english: "to turn about/aside" },
+                { hebrew: "חָסָה", english: "to seek refuge" },
+                { hebrew: "עָנָה", english: "to answer" },
+                { hebrew: "פָּדָה", english: "to ransom, redeem" },
+                { hebrew: "רָבָה", english: "to be(come) many, multiply" }
+            ],
+            lesson24: [
+                { hebrew: "חָטָא", english: "to sin, miss (a mark)" },
+                { hebrew: "כּוּן", english: "to be firm, establish" },
+                { hebrew: "גּוּר", english: "to sojourn, abide" },
+                { hebrew: "עוּר", english: "to be awake, stir up" },
+                { hebrew: "לָמַד", english: "to learn; (Pi) teach" },
+                { hebrew: "מָשַׁל", english: "to rule, govern" },
+                { hebrew: "עָנָה", english: "(Pi) to afflict, humiliate" },
+                { hebrew: "מָכַר", english: "to sell, hand over" },
+                { hebrew: "יָעַץ", english: "to advise, counsel" },
+                { hebrew: "יָכֹל", english: "to be able" },
+                { hebrew: "עַד", english: "unto, until, while" },
+                { hebrew: "שֶׁקֶר", english: "lie, falsehood" },
+                { hebrew: "כָּנָף", english: "wing, edge" },
+                { hebrew: "עַמּוּד", english: "pillar, column" }
+            ],
+            lesson25: [
+                { hebrew: "נָפַל", english: "to fall, fall upon" },
+                { hebrew: "פֹּה", english: "here, at this place" },
+                { hebrew: "סוּר", english: "to turn aside, leave" },
+                { hebrew: "אֹזֶן", english: "ear (f.s.)" },
+                { hebrew: "זָבַח", english: "sacrifice" },
+                { hebrew: "אַיִל", english: "ram, mighty" },
+                { hebrew: "גִּבּוֹר", english: "hero, mighty" },
+                { hebrew: "צָפוֹן", english: "north, northern" },
+                { hebrew: "פֶּן", english: "lest, otherwise" },
+                { hebrew: "יָסַף", english: "to add, continue" },
+                { hebrew: "נֶגֶד", english: "opposite, in front of" },
+                { hebrew: "רֵעַ", english: "friend, companion" },
+                { hebrew: "שָׁתָה", english: "to drink" }
+            ],
+            lesson26: [
+                { hebrew: "אָבָה", english: "to be willing, agree" },
+                { hebrew: "אָבַד", english: "to perish, destroy" },
+                { hebrew: "אָפָה", english: "to bake" },
+                { hebrew: "אָמֵץ", english: "to be strong, brave" },
+                { hebrew: "סָבַב", english: "to go around" },
+                { hebrew: "תָּמַם", english: "to be finished" },
+                { hebrew: "אָרַר", english: "to curse" },
+                { hebrew: "אֵיפֹה", english: "where?" }
+            ]
+        };
+
+        // Spaced Repetition System Configuration
+        const SRS_CONFIG = {
+            intervals: {
+                easy: [0.1, 1, 3, 7, 14, 30, 90], // Days between reviews (0.1 = ~2 hours for immediate testing)
+                medium: [0.1, 0.5, 2, 4, 8, 16, 32], // Shorter intervals for medium words
+                hard: [0.1, 0.2, 1, 2, 3, 5, 8] // Very short intervals for hard words
+            },
+            masteryThreshold: 3, // Number of consecutive "easy" ratings to achieve mastery
+            maxMasteryInterval: 180 // Maximum days between reviews for mastered words
+        };
+
+        // App state
+        let currentDeck = [];
+        let currentCardIndex = 0;
+        let isFlipped = false;
+        let selectedLessons = new Set();
+        let shuffleEnabled = false;
+        let reviewMode = false;
+        let progress = JSON.parse(localStorage.getItem('hebrewProgress') || '{}');
+
+        // DOM elements
+        const lessonSelector = document.getElementById('lessonSelector');
+        const studyView = document.getElementById('studyView');
+        const lessonGrid = document.getElementById('lessonGrid');
+        const lessonCheckboxes = document.getElementById('lessonCheckboxes');
+        const lessonToggleBtn = document.getElementById('lessonToggleBtn');
+        const selectAllBtn = document.getElementById('selectAllBtn');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const instructionsToggleBtn = document.getElementById('instructionsToggleBtn');
+        const instructionsContent = document.getElementById('instructionsContent');
+        const shuffleOption = document.getElementById('shuffleOption');
+        const reviewOption = document.getElementById('reviewOption');
+        const startButton = document.getElementById('startButton');
+        const backButton = document.getElementById('backButton');
+        const flashcard = document.getElementById('flashcard');
+        const hebrewText = document.getElementById('hebrewText');
+        const englishText = document.getElementById('englishText');
+        const easyBtn = document.getElementById('easyBtn');
+        const mediumBtn = document.getElementById('mediumBtn');
+        const hardBtn = document.getElementById('hardBtn');
+        const flashOverlay = document.getElementById('flashOverlay');
+        const homeProgressFill = document.getElementById('homeProgressFill');
+        const homeProgressSummary = document.getElementById('homeProgressSummary');
+        const sessionInfo = document.getElementById('sessionInfo');
+        const completionModal = document.getElementById('completionModal');
+        const reviewMessage = document.getElementById('reviewMessage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const cardCounter = document.getElementById('cardCounter');
+        const difficultyIndicator = document.getElementById('difficultyIndicator');
+        const difficultyIndicatorBack = document.getElementById('difficultyIndicatorBack');
+        const masteryBadge = document.getElementById('masteryBadge');
+        const masteryBadgeBack = document.getElementById('masteryBadgeBack');
+        const totalStudiedNumber = document.getElementById('totalStudiedNumber');
+        const masteredNumber = document.getElementById('masteredNumber');
+        const analyticsGrid = document.getElementById('analyticsGrid');
+
+        // Initialize app
+        function init() {
+            generateLessonCheckboxes();
+            setupEventListeners();
+            updateStartButton();
+            updateHomeProgressDisplay();
+        }
+
+        // Generate lesson checkboxes
+        function generateLessonCheckboxes() {
+            lessonCheckboxes.innerHTML = '';
+            for (let i = 1; i <= 26; i++) { // All 26 lessons now available
+                const lessonDiv = document.createElement('div');
+                lessonDiv.className = 'lesson-checkbox';
+                lessonDiv.innerHTML = `
+                    <input type="checkbox" id="lesson${i}" value="lesson${i}">
+                    <label for="lesson${i}">Lesson ${i}</label>
+                `;
+                
+                // Make entire lesson box clickable
+                lessonDiv.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const checkbox = lessonDiv.querySelector('input');
+                    checkbox.checked = !checkbox.checked;
+                    handleLessonToggle(`lesson${i}`);
+                });
+                
+                // Also handle direct checkbox clicks
+                const checkbox = lessonDiv.querySelector('input');
+                checkbox.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent double-triggering
+                    handleLessonToggle(`lesson${i}`);
+                });
+                
+                lessonCheckboxes.appendChild(lessonDiv);
+            }
+        }
+
+        // Select all lessons
+        function selectAllLessons() {
+            for (let i = 1; i <= 26; i++) {
+                const checkbox = document.getElementById(`lesson${i}`);
+                const lessonDiv = checkbox.closest('.lesson-checkbox');
+                
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    selectedLessons.add(`lesson${i}`);
+                    lessonDiv.classList.add('selected');
+                }
+            }
+            updateStartButton();
+            updateLessonToggleButton();
+        }
+
+        // Clear all lessons
+        function clearAllLessons() {
+            for (let i = 1; i <= 26; i++) {
+                const checkbox = document.getElementById(`lesson${i}`);
+                const lessonDiv = checkbox.closest('.lesson-checkbox');
+                
+                if (checkbox.checked) {
+                    checkbox.checked = false;
+                    selectedLessons.delete(`lesson${i}`);
+                    lessonDiv.classList.remove('selected');
+                }
+            }
+            updateStartButton();
+            updateLessonToggleButton();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Instructions toggle button
+            instructionsToggleBtn.addEventListener('click', toggleInstructions);
+
+            // Lesson toggle button
+            lessonToggleBtn.addEventListener('click', toggleLessonGrid);
+
+            // Lesson control buttons
+            selectAllBtn.addEventListener('click', selectAllLessons);
+            clearAllBtn.addEventListener('click', clearAllLessons);
+
+            // Lesson selection
+            document.addEventListener('change', (e) => {
+                if (e.target.type === 'checkbox' && e.target.id.startsWith('lesson')) {
+                    handleLessonToggle(e.target.value);
+                }
+            });
+
+            // Options
+            shuffleOption.addEventListener('click', () => {
+                const checkbox = document.getElementById('shuffleCards');
+                checkbox.checked = !checkbox.checked;
+                shuffleEnabled = checkbox.checked;
+                shuffleOption.classList.toggle('selected', shuffleEnabled);
+            });
+
+            reviewOption.addEventListener('click', () => {
+                const checkbox = document.getElementById('reviewMode');
+                checkbox.checked = !checkbox.checked;
+                reviewMode = checkbox.checked;
+                reviewOption.classList.toggle('selected', reviewMode);
+                updateStartButton();
+            });
+
+            // Start button
+            startButton.addEventListener('click', startStudySession);
+
+            // Back button
+            backButton.addEventListener('click', showLessonSelector);
+
+            // Card interactions
+            flashcard.addEventListener('click', flipCard);
+
+            // Difficulty buttons
+            easyBtn.addEventListener('click', () => rateDifficulty('easy'));
+            mediumBtn.addEventListener('click', () => rateDifficulty('medium'));
+            hardBtn.addEventListener('click', () => rateDifficulty('hard'));
+
+            // Navigation buttons
+            prevBtn.addEventListener('click', goToPreviousCard);
+            nextBtn.addEventListener('click', goToNextCard);
+
+            // Keyboard controls
+            document.addEventListener('keydown', handleKeyPress);
+
+            // Touch gestures
+            setupTouchGestures();
+        }
+
+        // Toggle instructions visibility
+        function toggleInstructions() {
+            const isExpanded = instructionsContent.classList.contains('expanded');
+            instructionsContent.classList.toggle('expanded');
+            instructionsToggleBtn.classList.toggle('expanded', !isExpanded);
+        }
+
+        // Toggle lesson grid visibility
+        function toggleLessonGrid() {
+            const isExpanded = lessonGrid.classList.contains('expanded');
+            lessonGrid.classList.toggle('expanded');
+            lessonToggleBtn.classList.toggle('expanded', !isExpanded);
+        }
+
+        // Handle lesson toggle
+        function handleLessonToggle(lessonId) {
+            const checkbox = document.getElementById(lessonId);
+            const lessonDiv = checkbox.closest('.lesson-checkbox');
+            
+            if (checkbox.checked) {
+                selectedLessons.add(lessonId);
+                lessonDiv.classList.add('selected');
+            } else {
+                selectedLessons.delete(lessonId);
+                lessonDiv.classList.remove('selected');
+            }
+            
+            updateStartButton();
+            updateLessonToggleButton();
+        }
+
+        // Update lesson toggle button text
+        function updateLessonToggleButton() {
+            const selectedCount = selectedLessons.size;
+            const buttonText = selectedCount > 0 ? 
+                `${selectedCount} Lesson${selectedCount !== 1 ? 's' : ''} Selected` : 
+                'Select Lessons';
+            lessonToggleBtn.querySelector('span').textContent = buttonText;
+            
+            // Add visual indication when lessons are selected
+            lessonToggleBtn.classList.toggle('active', selectedCount > 0);
+        }
+
+        // Update start button state
+        function updateStartButton() {
+            if (reviewMode) {
+                const reviewWords = getReviewWords();
+                startButton.disabled = reviewWords.length === 0;
+                startButton.textContent = reviewWords.length === 0 ? 
+                    'No Words to Review' : `Review ${reviewWords.length} Words`;
+            } else {
+                startButton.disabled = selectedLessons.size === 0;
+                startButton.textContent = selectedLessons.size === 0 ? 
+                    'Select Lessons' : `Study ${getTotalWords()} Words`;
+            }
+        }
+
+        // Get total words count
+        function getTotalWords() {
+            let total = 0;
+            selectedLessons.forEach(lesson => {
+                if (vocabulary[lesson]) {
+                    total += vocabulary[lesson].length;
+                }
+            });
+            return total;
+        }
+
+        // Spaced Repetition System functions
+        function calculateNextReviewDate(difficulty, currentStreak = 0) {
+            const now = new Date();
+            const intervals = SRS_CONFIG.intervals[difficulty];
+            const intervalIndex = Math.min(currentStreak, intervals.length - 1);
+            const daysToAdd = intervals[intervalIndex];
+            
+            const nextReview = new Date(now);
+            nextReview.setDate(nextReview.getDate() + daysToAdd);
+            return nextReview.toISOString();
+        }
+
+        function isWordDueForReview(wordProgress) {
+            if (!wordProgress.nextReview) return true;
+            
+            // Include words due today or in the past
+            const now = new Date();
+            const reviewDate = new Date(wordProgress.nextReview);
+            
+            // Set both dates to start of day for fair comparison
+            now.setHours(0, 0, 0, 0);
+            reviewDate.setHours(0, 0, 0, 0);
+            
+            return now >= reviewDate;
+        }
+
+        function isWordMastered(wordProgress) {
+            return wordProgress.easyStreak >= SRS_CONFIG.masteryThreshold;
+        }
+
+        // Get review words using SRS
+        function getReviewWords() {
+            const reviewWords = [];
+            
+            for (const [hebrew, wordProgress] of Object.entries(progress)) {
+                // Skip mastered words unless they're due for maintenance review
+                if (isWordMastered(wordProgress)) {
+                    if (wordProgress.lastMasteryReview) {
+                        const daysSinceLastReview = (new Date() - new Date(wordProgress.lastMasteryReview)) / (1000 * 60 * 60 * 24);
+                        if (daysSinceLastReview < SRS_CONFIG.maxMasteryInterval) {
+                            continue; // Skip this mastered word
+                        }
+                    } else {
+                        continue; // Skip if no mastery review date set
+                    }
+                }
+                
+                // Check if word is due for review
+                if (isWordDueForReview(wordProgress)) {
+                    // Find the word in vocabulary
+                    for (const lesson of Object.values(vocabulary)) {
+                        const word = lesson.find(w => w.hebrew === hebrew);
+                        if (word) {
+                            reviewWords.push({
+                                ...word,
+                                priority: wordProgress.difficulty === 'hard' ? 3 : 
+                                         wordProgress.difficulty === 'medium' ? 2 : 1
+                            });
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // Sort by priority (hard words first) and then by how overdue they are
+            reviewWords.sort((a, b) => {
+                const aProgress = progress[a.hebrew];
+                const bProgress = progress[b.hebrew];
+                
+                if (b.priority !== a.priority) {
+                    return b.priority - a.priority;
+                }
+                
+                // Sort by how overdue (older nextReview dates first)
+                if (aProgress.nextReview && bProgress.nextReview) {
+                    return new Date(aProgress.nextReview) - new Date(bProgress.nextReview);
+                }
+                
+                return 0;
+            });
+            
+            return reviewWords;
+        }
+
+        // Start study session
+        function startStudySession() {
+            if (reviewMode) {
+                currentDeck = getReviewWords();
+                if (currentDeck.length === 0) {
+                    showReviewMessage();
+                    return;
+                }
+            } else {
+                currentDeck = [];
+                selectedLessons.forEach(lesson => {
+                    if (vocabulary[lesson]) {
+                        currentDeck.push(...vocabulary[lesson]);
+                    }
+                });
+            }
+
+            if (shuffleEnabled && !reviewMode) { // Don't shuffle in review mode to maintain priority
+                shuffleDeck();
+            }
+
+            currentCardIndex = 0;
+            showStudyView();
+            showCurrentCard();
+        }
+
+        // Show review message
+        function showReviewMessage() {
+            lessonSelector.style.display = 'none';
+            studyView.style.display = 'flex';
+            reviewMessage.style.display = 'block';
+            flashcard.style.display = 'none';
+            document.querySelector('.controls').style.display = 'none';
+            document.querySelector('.instructions').style.display = 'none';
+            document.querySelector('.navigation-controls').style.display = 'none';
+        }
+
+        // Shuffle deck
+        function shuffleDeck() {
+            for (let i = currentDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+            }
+        }
+
+        // Show study view
+        function showStudyView() {
+            lessonSelector.style.display = 'none';
+            studyView.style.display = 'flex';
+            reviewMessage.style.display = 'none';
+            flashcard.style.display = 'block';
+            document.querySelector('.controls').style.display = 'flex';
+            document.querySelector('.instructions').style.display = 'block';
+            document.querySelector('.navigation-controls').style.display = 'flex';
+            
+            // Hide header during study mode for focused learning
+            document.querySelector('.header').style.display = 'none';
+            
+            updateProgressDisplay();
+        }
+
+        // Show lesson selector
+        function showLessonSelector() {
+            lessonSelector.style.display = 'flex';
+            studyView.style.display = 'none';
+            
+            // Show header when returning to main screen
+            document.querySelector('.header').style.display = 'flex';
+            
+            updateStartButton();
+            updateHomeProgressDisplay();
+        }
+
+        // Show current card
+        function showCurrentCard() {
+            // First reset to front side to prevent seeing next card's back
+            isFlipped = false;
+            flashcard.classList.remove('flipped');
+            setDifficultyButtonsActive(false);
+            
+            // Small delay before loading new content to ensure clean transition
+            setTimeout(() => {
+                if (currentCardIndex >= currentDeck.length) {
+                    showCompletionModal();
+                    return;
+                }
+
+                const card = currentDeck[currentCardIndex];
+                hebrewText.textContent = card.hebrew;
+                englishText.textContent = card.english;
+                
+                // Update difficulty indicators and mastery badges
+                updateDifficultyIndicator(card);
+                
+                // Update navigation
+                updateNavigation();
+                
+                updateSessionInfo();
+            }, 100);
+        }
+
+        // Update difficulty indicator and mastery status
+        function updateDifficultyIndicator(card) {
+            const savedProgress = progress[card.hebrew];
+            
+            // Reset indicators and badges
+            difficultyIndicator.className = 'difficulty-indicator';
+            difficultyIndicatorBack.className = 'difficulty-indicator';
+            masteryBadge.style.display = 'none';
+            masteryBadgeBack.style.display = 'none';
+            
+            if (savedProgress) {
+                // Check if word is mastered
+                if (isWordMastered(savedProgress)) {
+                    masteryBadge.style.display = 'block';
+                    masteryBadgeBack.style.display = 'block';
+                    difficultyIndicator.classList.add('mastered');
+                    difficultyIndicatorBack.classList.add('mastered');
+                    difficultyIndicator.style.display = 'block';
+                    difficultyIndicatorBack.style.display = 'block';
+                } else if (savedProgress.difficulty) {
+                    // Show the previously selected difficulty
+                    difficultyIndicator.classList.add(savedProgress.difficulty);
+                    difficultyIndicatorBack.classList.add(savedProgress.difficulty);
+                    difficultyIndicator.style.display = 'block';
+                    difficultyIndicatorBack.style.display = 'block';
+                } else {
+                    // Hide indicators if no previous difficulty
+                    difficultyIndicator.style.display = 'none';
+                    difficultyIndicatorBack.style.display = 'none';
+                }
+            } else {
+                // Hide indicators if no progress data
+                difficultyIndicator.style.display = 'none';
+                difficultyIndicatorBack.style.display = 'none';
+            }
+        }
+
+        // Update navigation controls
+        function updateNavigation() {
+            // Update counter
+            cardCounter.textContent = `${currentCardIndex + 1} / ${currentDeck.length}`;
+            
+            // Update button states
+            prevBtn.disabled = currentCardIndex === 0;
+            nextBtn.disabled = currentCardIndex === currentDeck.length - 1;
+        }
+
+        // Go to previous card
+        function goToPreviousCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                showCurrentCard();
+            }
+        }
+
+        // Go to next card
+        function goToNextCard() {
+            if (currentCardIndex < currentDeck.length - 1) {
+                currentCardIndex++;
+                showCurrentCard();
+            }
+        }
+
+        // Flip card
+        function flipCard() {
+            isFlipped = !isFlipped;
+            flashcard.classList.toggle('flipped', isFlipped);
+            setDifficultyButtonsActive(isFlipped);
+        }
+
+        // Set difficulty buttons active state
+        function setDifficultyButtonsActive(active) {
+            [easyBtn, mediumBtn, hardBtn].forEach(btn => {
+                btn.classList.toggle('active', active);
+            });
+        }
+
+        // Rate difficulty with enhanced SRS tracking
+        function rateDifficulty(difficulty) {
+            if (!isFlipped) return;
+
+            const card = currentDeck[currentCardIndex];
+            const now = new Date().toISOString();
+            
+            // Get existing progress or create new
+            let wordProgress = progress[card.hebrew] || {
+                difficulty: null,
+                easyStreak: 0,
+                mediumStreak: 0,
+                hardStreak: 0,
+                totalReviews: 0,
+                createdDate: now,
+                nextReview: null
+            };
+
+            // Update basic progress
+            wordProgress.difficulty = difficulty;
+            wordProgress.lastReviewed = now;
+            wordProgress.totalReviews++;
+
+            // Update streaks
+            if (difficulty === 'easy') {
+                wordProgress.easyStreak++;
+                wordProgress.mediumStreak = 0;
+                wordProgress.hardStreak = 0;
+            } else if (difficulty === 'medium') {
+                wordProgress.easyStreak = 0;
+                wordProgress.mediumStreak++;
+                wordProgress.hardStreak = 0;
+            } else if (difficulty === 'hard') {
+                wordProgress.easyStreak = 0;
+                wordProgress.mediumStreak = 0;
+                wordProgress.hardStreak++;
+            }
+
+            // Calculate next review date
+            const streakForInterval = difficulty === 'easy' ? wordProgress.easyStreak - 1 :
+                                    difficulty === 'medium' ? wordProgress.mediumStreak - 1 :
+                                    wordProgress.hardStreak - 1;
+            wordProgress.nextReview = calculateNextReviewDate(difficulty, streakForInterval);
+
+            // Check for mastery
+            if (isWordMastered(wordProgress) && !wordProgress.masteredDate) {
+                wordProgress.masteredDate = now;
+                wordProgress.lastMasteryReview = now;
+            }
+
+            // Update mastery review date if already mastered
+            if (isWordMastered(wordProgress)) {
+                wordProgress.lastMasteryReview = now;
+            }
+
+            // Store progress
+            progress[card.hebrew] = wordProgress;
+            localStorage.setItem('hebrewProgress', JSON.stringify(progress));
+
+            // Flash effect
+            flashEffect(difficulty);
+
+            // Update home progress immediately
+            updateHomeProgressDisplay();
+
+            // Move to next card after flash
+            setTimeout(() => {
+                currentCardIndex++;
+                showCurrentCard();
+            }, 500);
+        }
+
+        // Flash effect
+        function flashEffect(difficulty) {
+            flashOverlay.className = `flash-overlay flash-${difficulty} active`;
+            setTimeout(() => {
+                flashOverlay.classList.remove('active');
+            }, 300);
+        }
+
+        // Handle keyboard presses
+        function handleKeyPress(e) {
+            // Only handle keys in study view
+            if (studyView.style.display !== 'flex') return;
+
+            switch (e.code) {
+                case 'Space':
+                    e.preventDefault();
+                    flipCard();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    if (isFlipped) {
+                        rateDifficulty('hard');
+                    } else {
+                        goToPreviousCard();
+                    }
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    if (isFlipped) rateDifficulty('medium');
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    if (isFlipped) {
+                        rateDifficulty('easy');
+                    } else {
+                        goToNextCard();
+                    }
+                    break;
+                case 'Escape':
+                    e.preventDefault();
+                    showLessonSelector();
+                    break;
+            }
+        }
+
+        // Setup touch gestures
+        function setupTouchGestures() {
+            let startX, startY;
+            
+            flashcard.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+
+            flashcard.addEventListener('touchend', (e) => {
+                if (!startX || !startY) return;
+
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+
+                // Only handle swipes when card is flipped
+                if (!isFlipped) return;
+
+                // Determine swipe direction
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    // Horizontal swipe
+                    if (Math.abs(diffX) > 50) {
+                        if (diffX > 0) {
+                            // Swipe left (hard)
+                            rateDifficulty('hard');
+                        } else {
+                            // Swipe right (easy)
+                            rateDifficulty('easy');
+                        }
+                    }
+                } else {
+                    // Vertical swipe
+                    if (Math.abs(diffY) > 50 && diffY > 0) {
+                        // Swipe down (medium)
+                        rateDifficulty('medium');
+                    }
+                }
+
+                startX = startY = null;
+            });
+        }
+
+        // Enhanced analytics functions
+        function calculateRetentionRate() {
+            const wordsStudied = Object.keys(progress).length;
+            if (wordsStudied === 0) return 0;
+            
+            const masteredWords = Object.values(progress).filter(p => isWordMastered(p)).length;
+            return Math.round((masteredWords / wordsStudied) * 100);
+        }
+
+        function calculateAverageReviews() {
+            const reviews = Object.values(progress).map(p => p.totalReviews || 1);
+            if (reviews.length === 0) return 0;
+            
+            return Math.round(reviews.reduce((sum, r) => sum + r, 0) / reviews.length);
+        }
+
+        function getStudyStreak() {
+            const dates = Object.values(progress)
+                .map(p => p.lastReviewed)
+                .filter(date => date)
+                .map(date => new Date(date).toDateString())
+                .filter((date, index, array) => array.indexOf(date) === index)
+                .sort();
+            
+            if (dates.length === 0) return 0;
+            
+            let streak = 1;
+            const today = new Date().toDateString();
+            
+            // Check if studied today or yesterday
+            const lastStudyDate = new Date(dates[dates.length - 1]);
+            const daysSinceLastStudy = Math.floor((new Date() - lastStudyDate) / (1000 * 60 * 60 * 24));
+            
+            if (daysSinceLastStudy > 1) return 0;
+            
+            // Count consecutive days backwards
+            for (let i = dates.length - 2; i >= 0; i--) {
+                const currentDate = new Date(dates[i + 1]);
+                const prevDate = new Date(dates[i]);
+                const daysDiff = Math.floor((currentDate - prevDate) / (1000 * 60 * 60 * 24));
+                
+                if (daysDiff === 1) {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+            
+            return streak;
+        }
+
+        function getWordsNeedingReview() {
+            return getReviewWords().length;
+        }
+
+        // Update progress display on home page
+        function updateHomeProgressDisplay() {
+            const totalWords = getAllWords().length;
+            const studiedWords = Object.keys(progress).length;
+            const easyCount = Object.values(progress).filter(p => p.difficulty === 'easy').length;
+            const mediumCount = Object.values(progress).filter(p => p.difficulty === 'medium').length;
+            const hardCount = Object.values(progress).filter(p => p.difficulty === 'hard').length;
+            const masteredCount = Object.values(progress).filter(p => isWordMastered(p)).length;
+
+            // Update main numbers
+            totalStudiedNumber.textContent = studiedWords;
+            masteredNumber.textContent = masteredCount;
+
+            // Update progress bar
+            const progressPercent = totalWords > 0 ? (studiedWords / totalWords) * 100 : 0;
+            homeProgressFill.style.width = `${progressPercent}%`;
+
+            // Update progress summary
+            homeProgressSummary.innerHTML = `
+                <div class="progress-item">
+                    <div class="progress-dot total"></div>
+                    <span>Total: ${studiedWords}/${totalWords}</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-dot easy"></div>
+                    <span>Easy: ${easyCount}</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-dot medium"></div>
+                    <span>Medium: ${mediumCount}</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-dot hard"></div>
+                    <span>Hard: ${hardCount}</span>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-dot mastered"></div>
+                    <span>Mastered: ${masteredCount}</span>
+                </div>
+            `;
+
+            // Update analytics
+            updateAnalytics();
+        }
+
+        // Update analytics section
+        function updateAnalytics() {
+            const retentionRate = calculateRetentionRate();
+            const averageReviews = calculateAverageReviews();
+            const studyStreak = getStudyStreak();
+            const wordsNeedingReview = getWordsNeedingReview();
+
+            analyticsGrid.innerHTML = `
+                <div class="analytic-item">
+                    <div class="label">Retention Rate</div>
+                    <div class="value">${retentionRate}%</div>
+                </div>
+                <div class="analytic-item">
+                    <div class="label">Avg. Reviews</div>
+                    <div class="value">${averageReviews}</div>
+                </div>
+                <div class="analytic-item">
+                    <div class="label">Study Streak</div>
+                    <div class="value">${studyStreak} day${studyStreak !== 1 ? 's' : ''}</div>
+                </div>
+                <div class="analytic-item">
+                    <div class="label">Due for Review</div>
+                    <div class="value">${wordsNeedingReview}</div>
+                </div>
+            `;
+        }
+
+        // Update session info in study view
+        function updateSessionInfo() {
+            if (currentDeck.length > 0) {
+                const mode = reviewMode ? 'Review' : 'Study';
+                sessionInfo.textContent = `${mode}: ${currentCardIndex + 1} of ${currentDeck.length}`;
+            }
+        }
+
+        // Update progress display (legacy function for compatibility)
+        function updateProgressDisplay() {
+            updateHomeProgressDisplay();
+        }
+
+        // Get all words from vocabulary
+        function getAllWords() {
+            const allWords = [];
+            Object.values(vocabulary).forEach(lesson => {
+                allWords.push(...lesson);
+            });
+            return allWords;
+        }
+
+        // Show completion modal
+        function showCompletionModal() {
+            completionModal.style.display = 'flex';
+        }
+
+        // Hide completion modal and return to lesson selector
+        function hideCompletionModal() {
+            completionModal.style.display = 'none';
+            showLessonSelector();
+        }
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Export functions for modal buttons
+        window.showLessonSelector = showLessonSelector;
+        window.hideCompletionModal = hideCompletionModal;
+    </script>
+</body>
+</html>
