@@ -78,6 +78,89 @@
             gap: 20px;
         }
 
+        .compact-progress-stats {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .progress-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .compact-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .stat-number {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .stat-number.mastered {
+            color: #8b5cf6;
+        }
+
+        .progress-details-btn {
+            background: none;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .progress-details-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .progress-details-btn.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .compact-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .detailed-progress-stats {
+            display: none;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .detailed-progress-stats.expanded {
+            display: block;
+        }
+
         .home-progress-stats {
             margin-bottom: 30px;
             padding: 20px;
@@ -129,6 +212,16 @@
 
         .progress-card.mastered h4,
         .progress-card.mastered .number {
+            color: white;
+        }
+
+        .daily-challenge-card {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .daily-challenge-card h4,
+        .daily-challenge-card .number {
             color: white;
         }
 
@@ -210,6 +303,92 @@
             font-size: 1.2rem;
             font-weight: 600;
             color: #1f2937;
+        }
+
+        /* Search and Filter Styles */
+        .search-filter-section {
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .clear-search.visible {
+            display: block;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 6px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .filter-btn.active {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .search-results {
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #6b7280;
         }
 
         .lesson-selection-section {
@@ -414,6 +593,10 @@
             background: #eef2ff;
         }
 
+        .lesson-checkbox.hidden {
+            display: none;
+        }
+
         .options {
             display: flex;
             gap: 20px;
@@ -441,17 +624,28 @@
             background: #eef2ff;
         }
 
-        .start-button {
-            background: #667eea;
-            color: white;
-            border: none;
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .start-button, .daily-challenge-btn {
             padding: 16px 32px;
+            border: none;
             border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            align-self: center;
+            min-width: 180px;
+        }
+
+        .start-button {
+            background: #667eea;
+            color: white;
         }
 
         .start-button:hover:not(:disabled) {
@@ -463,6 +657,30 @@
             background: #9ca3af;
             cursor: not-allowed;
             transform: none;
+        }
+
+        .daily-challenge-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .daily-challenge-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            transform: translateY(-2px);
+        }
+
+        .daily-challenge-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .challenge-status {
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 8px;
+            color: #10b981;
+            font-weight: 500;
         }
 
         .study-view {
@@ -798,6 +1016,19 @@
             .analytics-grid {
                 grid-template-columns: 1fr 1fr;
             }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .start-button, .daily-challenge-btn {
+                min-width: unset;
+                width: 100%;
+            }
+
+            .filter-controls {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -809,26 +1040,46 @@
 
         <!-- Lesson Selector View -->
         <div id="lessonSelector" class="lesson-selector">
-            <!-- Progress Statistics -->
-            <div class="home-progress-stats">
-                <h3>Your Learning Progress</h3>
-                
+            <!-- Compact Progress Stats -->
+            <div class="compact-progress-stats">
+                <div class="progress-summary-row">
+                    <div class="compact-stat">
+                        <span class="stat-label">Studied:</span>
+                        <span class="stat-number" id="compactStudiedNumber">0</span>
+                    </div>
+                    <div class="compact-stat">
+                        <span class="stat-label">Mastered:</span>
+                        <span class="stat-number mastered" id="compactMasteredNumber">0</span>
+                    </div>
+                    <button class="progress-details-btn" id="progressDetailsBtn">
+                        <span>View Progress Details</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                </div>
+                <div class="compact-progress-bar">
+                    <div class="progress-fill" id="compactProgressFill"></div>
+                </div>
+            </div>
+
+            <!-- Detailed Progress Stats (Collapsible) -->
+            <div class="detailed-progress-stats" id="detailedProgressStats">
                 <div class="progress-overview">
                     <div class="progress-card">
-                        <h4>Total Studied</h4>
-                        <div class="number" id="totalStudiedNumber">0</div>
+                        <h4>Easy</h4>
+                        <div class="number" id="easyCount">0</div>
                     </div>
-                    <div class="progress-card mastered">
-                        <h4>Mastered</h4>
-                        <div class="number" id="masteredNumber">0</div>
+                    <div class="progress-card">
+                        <h4>Medium</h4>
+                        <div class="number" id="mediumCount">0</div>
                     </div>
-                </div>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" id="homeProgressFill"></div>
-                </div>
-                <div class="progress-summary" id="homeProgressSummary">
-                    <!-- Progress stats will be shown here -->
+                    <div class="progress-card">
+                        <h4>Hard</h4>
+                        <div class="number" id="hardCount">0</div>
+                    </div>
+                    <div class="progress-card daily-challenge-card">
+                        <h4>For Review</h4>
+                        <div class="number" id="reviewCount">0</div>
+                    </div>
                 </div>
 
                 <div class="analytics-section">
@@ -850,6 +1101,8 @@
                         <h4>Getting Started</h4>
                         <ul>
                             <li><strong>Select Lessons:</strong> Click "Select Lessons" to choose which vocabulary sets to study</li>
+                            <li><strong>Search Words:</strong> Use the search bar to find specific Hebrew or English words</li>
+                            <li><strong>Daily Challenge:</strong> Complete 15 words daily for consistent practice</li>
                             <li><strong>Study Mode:</strong> Learn new words or review all selected lessons</li>
                             <li><strong>Review Mode (SRS):</strong> Use spaced repetition to review previously studied words</li>
                         </ul>
@@ -882,6 +1135,25 @@
                 </div>
             </div>
 
+            <!-- Search and Filter Section -->
+            <div class="search-filter-section">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search Hebrew or English words...">
+                    <button class="clear-search" id="clearSearchBtn">×</button>
+                </div>
+                <div class="filter-controls" id="filterControls">
+                    <button class="filter-btn" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="noun">Nouns</button>
+                    <button class="filter-btn" data-filter="verb">Verbs</button>
+                    <button class="filter-btn" data-filter="adjective">Adjectives</button>
+                    <button class="filter-btn" data-filter="preposition">Prepositions</button>
+                    <button class="filter-btn" data-filter="pronoun">Pronouns</button>
+                    <button class="filter-btn" data-filter="number">Numbers</button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+
             <!-- Collapsible Lesson Selection -->
             <div class="lesson-selection-section">
                 <button class="lesson-toggle-btn" id="lessonToggleBtn">
@@ -910,7 +1182,13 @@
                 </div>
             </div>
 
-            <button class="start-button" id="startButton" disabled>Start Study Session</button>
+            <div class="action-buttons">
+                <button class="start-button" id="startButton" disabled>Start Study Session</button>
+                <div>
+                    <button class="daily-challenge-btn" id="dailyChallengeBtn">Daily Challenge</button>
+                    <div class="challenge-status" id="challengeStatus"></div>
+                </div>
+            </div>
         </div>
 
         <!-- Study View -->
@@ -963,381 +1241,381 @@
     <!-- Completion Modal -->
     <div class="completion-modal" id="completionModal">
         <div class="modal-content">
-            <h2>🎉 Session Completed!</h2>
-            <p>Great job studying! Your progress has been saved.</p>
+            <h2 id="modalTitle">🎉 Session Completed!</h2>
+            <p id="modalMessage">Great job studying! Your progress has been saved.</p>
             <button class="start-button" onclick="hideCompletionModal()">Study More</button>
         </div>
     </div>
 
     <script>
-        // Vocabulary data
+        // Enhanced vocabulary data with part of speech tags
         const vocabulary = {
             lesson1: [
-                { hebrew: "יהוה", english: "The LORD, Adonai, YHWH, Ha-Shem" },
-                { hebrew: "מֶלֶךְ", english: "king" }
+                { hebrew: "יהוה", english: "The LORD, Adonai, YHWH, Ha-Shem", partOfSpeech: "noun" },
+                { hebrew: "מֶלֶךְ", english: "king", partOfSpeech: "noun" }
             ],
             lesson2: [
-                { hebrew: "אֲנִי", english: "I" },
-                { hebrew: "אַתָּה", english: "you (ms)" },
-                { hebrew: "עֶבֶד", english: "servant" },
-                { hebrew: "בֵּן", english: "son" },
-                { hebrew: "מִי", english: "who" },
-                { hebrew: "אַתְּ", english: "you (fs)" }
+                { hebrew: "אֲנִי", english: "I", partOfSpeech: "pronoun" },
+                { hebrew: "אַתָּה", english: "you (ms)", partOfSpeech: "pronoun" },
+                { hebrew: "עֶבֶד", english: "servant", partOfSpeech: "noun" },
+                { hebrew: "בֵּן", english: "son", partOfSpeech: "noun" },
+                { hebrew: "מִי", english: "who", partOfSpeech: "pronoun" },
+                { hebrew: "אַתְּ", english: "you (fs)", partOfSpeech: "pronoun" }
             ],
             lesson3: [
-                { hebrew: "הִיא", english: "she, that (fs)" },
-                { hebrew: "הוּא", english: "he, that (ms)" },
-                { hebrew: "שָלוֹם", english: "peace" },
-                { hebrew: "אָב", english: "father" },
-                { hebrew: "טוֹב", english: "good" },
-                { hebrew: "כִּי", english: "because, for, since" },
-                { hebrew: "נָבִיא", english: "prophet" },
-                { hebrew: "מָה", english: "what, how" },
-                { hebrew: "זֹאת", english: "this (fs)" },
-                { hebrew: "זֶה", english: "this (ms)" }
+                { hebrew: "הִיא", english: "she, that (fs)", partOfSpeech: "pronoun" },
+                { hebrew: "הוּא", english: "he, that (ms)", partOfSpeech: "pronoun" },
+                { hebrew: "שָׁלוֹם", english: "peace", partOfSpeech: "noun" },
+                { hebrew: "אָב", english: "father", partOfSpeech: "noun" },
+                { hebrew: "טוֹב", english: "good", partOfSpeech: "adjective" },
+                { hebrew: "כִּי", english: "because, for, since", partOfSpeech: "conjunction" },
+                { hebrew: "נָבִיא", english: "prophet", partOfSpeech: "noun" },
+                { hebrew: "מָה", english: "what, how", partOfSpeech: "pronoun" },
+                { hebrew: "זֹאת", english: "this (fs)", partOfSpeech: "pronoun" },
+                { hebrew: "זֶה", english: "this (ms)", partOfSpeech: "pronoun" }
             ],
             lesson4: [
-                { hebrew: "עִיר", english: "city (f) [irregular plural עָרִים]" },
-                { hebrew: "אֶרֶץ", english: "land, earth (f)" },
-                { hebrew: "אִישׁ", english: "man (irregular plural אֲנָשִׁים)" },
-                { hebrew: "אִשָּׁה", english: "woman (irregular plural נָשִׁים)" },
-                { hebrew: "לֹא", english: "no, not" },
-                { hebrew: "אֵל", english: "God, god" },
-                { hebrew: "הִנֵּה", english: "behold" },
-                { hebrew: "הִנְנִי", english: "here I am" },
-                { hebrew: "סֵפֶר", english: "book (m)" },
-                { hebrew: "דָּבָר", english: "word, matter (m)" }
+                { hebrew: "עִיר", english: "city (f) [irregular plural עָרִים]", partOfSpeech: "noun" },
+                { hebrew: "אֶרֶץ", english: "land, earth (f)", partOfSpeech: "noun" },
+                { hebrew: "אִישׁ", english: "man (irregular plural אֲנָשִׁים)", partOfSpeech: "noun" },
+                { hebrew: "אִשָּׁה", english: "woman (irregular plural נָשִׁים)", partOfSpeech: "noun" },
+                { hebrew: "לֹא", english: "no, not", partOfSpeech: "adverb" },
+                { hebrew: "אֵל", english: "God, god", partOfSpeech: "noun" },
+                { hebrew: "הִנֵּה", english: "behold", partOfSpeech: "interjection" },
+                { hebrew: "הִנְנִי", english: "here I am", partOfSpeech: "interjection" },
+                { hebrew: "סֵפֶר", english: "book (m)", partOfSpeech: "noun" },
+                { hebrew: "דָּבָר", english: "word, matter (m)", partOfSpeech: "noun" }
             ],
             lesson5: [
-                { hebrew: "יוֹם", english: "day (m) [irr. plural יָמִים]" },
-                { hebrew: "וְ", english: "and, but, even, also" },
-                { hebrew: "בֹּקֶר", english: "morning" },
-                { hebrew: "עֶרֶב", english: "evening" },
-                { hebrew: "אֲדֹנִי; אֲדוֹן", english: "master, lord; Lord (of God)" },
-                { hebrew: "אֱלֹהִים", english: "God, gods" },
-                { hebrew: "אֶל", english: "to, toward" },
-                { hebrew: "נַעַר", english: "young man" },
-                { hebrew: "נַעֲרָה", english: "young woman" },
-                { hebrew: "בְּ", english: "in, at, with" },
-                { hebrew: "כְּ", english: "like, as" },
-                { hebrew: "לְ", english: "to, for" }
+                { hebrew: "יוֹם", english: "day (m) [irr. plural יָמִים]", partOfSpeech: "noun" },
+                { hebrew: "וְ", english: "and, but, even, also", partOfSpeech: "conjunction" },
+                { hebrew: "בֹּקֶר", english: "morning", partOfSpeech: "noun" },
+                { hebrew: "עֶרֶב", english: "evening", partOfSpeech: "noun" },
+                { hebrew: "אֲדֹנִי; אֲדוֹן", english: "master, lord; Lord (of God)", partOfSpeech: "noun" },
+                { hebrew: "אֱלֹהִים", english: "God, gods", partOfSpeech: "noun" },
+                { hebrew: "אֶל", english: "to, toward", partOfSpeech: "preposition" },
+                { hebrew: "נַעַר", english: "young man", partOfSpeech: "noun" },
+                { hebrew: "נַעֲרָה", english: "young woman", partOfSpeech: "noun" },
+                { hebrew: "בְּ", english: "in, at, with", partOfSpeech: "preposition" },
+                { hebrew: "כְּ", english: "like, as", partOfSpeech: "preposition" },
+                { hebrew: "לְ", english: "to, for", partOfSpeech: "preposition" }
             ],
             lesson6: [
-                { hebrew: "אָח", english: "brother [irr. pl. אַחִים]" },
-                { hebrew: "גּוֹי", english: "nation, people" },
-                { hebrew: "דֶּרֶךְ", english: "road (m/f)" },
-                { hebrew: "נֶפֶשׁ", english: "soul, life (f)" },
-                { hebrew: "קוֹל", english: "voice, sound" },
-                { hebrew: "תּוֹרָה", english: "law, teaching" },
-                { hebrew: "מַיִם", english: "water" },
-                { hebrew: "כֹּהֵן", english: "priest" },
-                { hebrew: "לֵב/לֵבָב", english: "heart, mind" },
-                { hebrew: "בַּת", english: "daughter (irr. pl בָּנוֹת)" }
+                { hebrew: "אָח", english: "brother [irr. pl. אַחִים]", partOfSpeech: "noun" },
+                { hebrew: "גּוֹי", english: "nation, people", partOfSpeech: "noun" },
+                { hebrew: "דֶּרֶךְ", english: "road (m/f)", partOfSpeech: "noun" },
+                { hebrew: "נֶפֶשׁ", english: "soul, life (f)", partOfSpeech: "noun" },
+                { hebrew: "קוֹל", english: "voice, sound", partOfSpeech: "noun" },
+                { hebrew: "תּוֹרָה", english: "law, teaching", partOfSpeech: "noun" },
+                { hebrew: "מַיִם", english: "water", partOfSpeech: "noun" },
+                { hebrew: "כֹּהֵן", english: "priest", partOfSpeech: "noun" },
+                { hebrew: "לֵב/לֵבָב", english: "heart, mind", partOfSpeech: "noun" },
+                { hebrew: "בַּת", english: "daughter (irr. pl בָּנוֹת)", partOfSpeech: "noun" }
             ],
             lesson7: [
-                { hebrew: "כֹּל, כָּל־", english: "all, each, every" },
-                { hebrew: "מִן", english: "from, more than" },
-                { hebrew: "אֵת, אֶת־", english: "definite direct object marker (not translated)" },
-                { hebrew: "לִפְנֵי", english: "before, in front of" },
-                { hebrew: "גָּדוֹל", english: "great, big" },
-                { hebrew: "מְאֹד", english: "very, exceedingly" },
-                { hebrew: "שָׁמַע", english: "to hear, obey" },
-                { hebrew: "בַּיִת", english: "house (irr. pl. בָּתִּים)" },
-                { hebrew: "עַל", english: "on, upon, according to" },
-                { hebrew: "אֶחָד", english: "one (ms)" },
-                { hebrew: "שָׁמַר", english: "to keep, guard" },
-                { hebrew: "אֱמֶת", english: "faithfulness, truth" },
-                { hebrew: "חֶסֶד", english: "steadfast love, loyalty" }
+                { hebrew: "כֹּל, כָּל־", english: "all, each, every", partOfSpeech: "adjective" },
+                { hebrew: "מִן", english: "from, more than", partOfSpeech: "preposition" },
+                { hebrew: "אֵת, אֶת־", english: "definite direct object marker (not translated)", partOfSpeech: "particle" },
+                { hebrew: "לִפְנֵי", english: "before, in front of", partOfSpeech: "preposition" },
+                { hebrew: "גָּדוֹל", english: "great, big", partOfSpeech: "adjective" },
+                { hebrew: "מְאֹד", english: "very, exceedingly", partOfSpeech: "adverb" },
+                { hebrew: "שָׁמַע", english: "to hear, obey", partOfSpeech: "verb" },
+                { hebrew: "בַּיִת", english: "house (irr. pl. בָּתִּים)", partOfSpeech: "noun" },
+                { hebrew: "עַל", english: "on, upon, according to", partOfSpeech: "preposition" },
+                { hebrew: "אֶחָד", english: "one (ms)", partOfSpeech: "number" },
+                { hebrew: "שָׁמַר", english: "to keep, guard", partOfSpeech: "verb" },
+                { hebrew: "אֱמֶת", english: "faithfulness, truth", partOfSpeech: "noun" },
+                { hebrew: "חֶסֶד", english: "steadfast love, loyalty", partOfSpeech: "noun" }
             ],
             lesson8: [
-                { hebrew: "הָיָה", english: "to be (he was)" },
-                { hebrew: "שָׁכֵן", english: "neighbor" },
-                { hebrew: "שֵׁם", english: "name" },
-                { hebrew: "קָרוֹב", english: "near, imminent" },
-                { hebrew: "יָשָׁר", english: "just, upright" },
-                { hebrew: "יָפֶה", english: "beautiful (f)" },
-                { hebrew: "צַדִּיק", english: "righteous, just" },
-                { hebrew: "קָשֶׁה", english: "difficult, hard" },
-                { hebrew: "קָדוֹשׁ", english: "holy, set apart" },
-                { hebrew: "חָכָם", english: "wise, skillful" },
-                { hebrew: "רָחוֹק", english: "far, distant" },
-                { hebrew: "שָׁמַיִם", english: "heavens" },
-                { hebrew: "עָבַד", english: "to serve, work" },
-                { hebrew: "מָלַךְ", english: "to reign, be king" }
+                { hebrew: "הָיָה", english: "to be (he was)", partOfSpeech: "verb" },
+                { hebrew: "שָׁכֵן", english: "neighbor", partOfSpeech: "noun" },
+                { hebrew: "שֵׁם", english: "name", partOfSpeech: "noun" },
+                { hebrew: "קָרוֹב", english: "near, imminent", partOfSpeech: "adjective" },
+                { hebrew: "יָשָׁר", english: "just, upright", partOfSpeech: "adjective" },
+                { hebrew: "יָפֶה", english: "beautiful (f)", partOfSpeech: "adjective" },
+                { hebrew: "צַדִּיק", english: "righteous, just", partOfSpeech: "adjective" },
+                { hebrew: "קָשֶׁה", english: "difficult, hard", partOfSpeech: "adjective" },
+                { hebrew: "קָדוֹשׁ", english: "holy, set apart", partOfSpeech: "adjective" },
+                { hebrew: "חָכָם", english: "wise, skillful", partOfSpeech: "adjective" },
+                { hebrew: "רָחוֹק", english: "far, distant", partOfSpeech: "adjective" },
+                { hebrew: "שָׁמַיִם", english: "heavens", partOfSpeech: "noun" },
+                { hebrew: "עָבַד", english: "to serve, work", partOfSpeech: "verb" },
+                { hebrew: "מָלַךְ", english: "to reign, be king", partOfSpeech: "verb" }
             ],
             lesson9: [
-                { hebrew: "וַיְהִי", english: "Qal perfect 3ms + waw consecutive < היה" },
-                { hebrew: "אֵין", english: "there is/are not" },
-                { hebrew: "יֵשׁ", english: "there is, there are" },
-                { hebrew: "אֲשֶׁר", english: "who, which, that" },
-                { hebrew: "עָשָׂה", english: "to do, make" },
-                { hebrew: "כֹה", english: "thus, so" },
-                { hebrew: "אָכַל", english: "to eat" },
-                { hebrew: "הָלַךְ", english: "to go, walk" },
-                { hebrew: "אָמַר", english: "to say" },
-                { hebrew: "יַחַד", english: "together (adv.), community" },
-                { hebrew: "רָאָה", english: "to see, perceive" },
-                { hebrew: "גַּם", english: "also, indeed" }
+                { hebrew: "וַיְהִי", english: "Qal perfect 3ms + waw consecutive < היה", partOfSpeech: "verb" },
+                { hebrew: "אֵין", english: "there is/are not", partOfSpeech: "adverb" },
+                { hebrew: "יֵשׁ", english: "there is, there are", partOfSpeech: "adverb" },
+                { hebrew: "אֲשֶׁר", english: "who, which, that", partOfSpeech: "pronoun" },
+                { hebrew: "עָשָׂה", english: "to do, make", partOfSpeech: "verb" },
+                { hebrew: "כֹה", english: "thus, so", partOfSpeech: "adverb" },
+                { hebrew: "אָכַל", english: "to eat", partOfSpeech: "verb" },
+                { hebrew: "הָלַךְ", english: "to go, walk", partOfSpeech: "verb" },
+                { hebrew: "אָמַר", english: "to say", partOfSpeech: "verb" },
+                { hebrew: "יַחַד", english: "together (adv.), community", partOfSpeech: "adverb" },
+                { hebrew: "רָאָה", english: "to see, perceive", partOfSpeech: "verb" },
+                { hebrew: "גַּם", english: "also, indeed", partOfSpeech: "adverb" }
             ],
             lesson10: [
-                { hebrew: "יָשַׁב", english: "to sit, live, dwell" },
-                { hebrew: "כֶּסֶף", english: "silver, money" },
-                { hebrew: "מָצָא", english: "to find" },
-                { hebrew: "יָצָא", english: "to go/come out" },
-                { hebrew: "לָקַח", english: "to take, receive" },
-                { hebrew: "לָמָּה", english: "why" },
-                { hebrew: "לֵאמֹר", english: "saying (used to introduce a direct quote)" },
-                { hebrew: "אָחוֹת", english: "sister (irregular plural אֲחָיוֹת)" },
-                { hebrew: "רֹאשׁ", english: "head (irregular plural רָאשִׁים)" },
-                { hebrew: "חַיִּים", english: "life (ms)" },
-                { hebrew: "מָקוֹם", english: "place (ms. irr. pl. מְקֹמוֹת)" },
-                { hebrew: "מָשָׁל", english: "proverb, saying" },
-                { hebrew: "מַדּוּעַ", english: "why" },
-                { hebrew: "עַתָּה", english: "now, then" },
-                { hebrew: "קָטֹן", english: "small, insignificant" }
+                { hebrew: "יָשַׁב", english: "to sit, live, dwell", partOfSpeech: "verb" },
+                { hebrew: "כֶּסֶף", english: "silver, money", partOfSpeech: "noun" },
+                { hebrew: "מָצָא", english: "to find", partOfSpeech: "verb" },
+                { hebrew: "יָצָא", english: "to go/come out", partOfSpeech: "verb" },
+                { hebrew: "לָקַח", english: "to take, receive", partOfSpeech: "verb" },
+                { hebrew: "לָמָּה", english: "why", partOfSpeech: "adverb" },
+                { hebrew: "לֵאמֹר", english: "saying (used to introduce a direct quote)", partOfSpeech: "particle" },
+                { hebrew: "אָחוֹת", english: "sister (irregular plural אֲחָיוֹת)", partOfSpeech: "noun" },
+                { hebrew: "רֹאשׁ", english: "head (irregular plural רָאשִׁים)", partOfSpeech: "noun" },
+                { hebrew: "חַיִּים", english: "life (ms)", partOfSpeech: "noun" },
+                { hebrew: "מָקוֹם", english: "place (ms. irr. pl. מְקֹמוֹת)", partOfSpeech: "noun" },
+                { hebrew: "מָשָׁל", english: "proverb, saying", partOfSpeech: "noun" },
+                { hebrew: "מַדּוּעַ", english: "why", partOfSpeech: "adverb" },
+                { hebrew: "עַתָּה", english: "now, then", partOfSpeech: "adverb" },
+                { hebrew: "קָטֹן", english: "small, insignificant", partOfSpeech: "adjective" }
             ],
             lesson11: [
-                { hebrew: "בָּטַח", english: "to trust, be confident" },
-                { hebrew: "בָּכָה", english: "to weep (for)" },
-                { hebrew: "שָׂרַף", english: "to burn, destroy" },
-                { hebrew: "לָבַשׁ", english: "to clothe, be clothed" },
-                { hebrew: "פָּתַח", english: "to open" },
-                { hebrew: "פֶּתַח", english: "entrance, door" },
-                { hebrew: "דּוֹר", english: "generation" },
-                { hebrew: "חוּץ", english: "outside, street" },
-                { hebrew: "מְלָאכָה", english: "work, occupation" },
-                { hebrew: "פַּר", english: "bull, ox" },
-                { hebrew: "רֹב", english: "multitude, abundance" },
-                { hebrew: "שָׂפָה", english: "lip, language, edge" },
-                { hebrew: "עֲבֹדָה", english: "work, service, worship" },
-                { hebrew: "עֵדָה", english: "congregation, assembly" }
+                { hebrew: "בָּטַח", english: "to trust, be confident", partOfSpeech: "verb" },
+                { hebrew: "בָּכָה", english: "to weep (for)", partOfSpeech: "verb" },
+                { hebrew: "שָׂרַף", english: "to burn, destroy", partOfSpeech: "verb" },
+                { hebrew: "לָבַשׁ", english: "to clothe, be clothed", partOfSpeech: "verb" },
+                { hebrew: "פָּתַח", english: "to open", partOfSpeech: "verb" },
+                { hebrew: "פֶּתַח", english: "entrance, door", partOfSpeech: "noun" },
+                { hebrew: "דּוֹר", english: "generation", partOfSpeech: "noun" },
+                { hebrew: "חוּץ", english: "outside, street", partOfSpeech: "noun" },
+                { hebrew: "מְלָאכָה", english: "work, occupation", partOfSpeech: "noun" },
+                { hebrew: "פַּר", english: "bull, ox", partOfSpeech: "noun" },
+                { hebrew: "רֹב", english: "multitude, abundance", partOfSpeech: "noun" },
+                { hebrew: "שָׂפָה", english: "lip, language, edge", partOfSpeech: "noun" },
+                { hebrew: "עֲבֹדָה", english: "work, service, worship", partOfSpeech: "noun" },
+                { hebrew: "עֵדָה", english: "congregation, assembly", partOfSpeech: "noun" }
             ],
             lesson12: [
-                { hebrew: "וַיְהִי", english: "Qal Impf 3ms + waw consecutive < הָיָה" },
-                { hebrew: "זָכַר", english: "to remember, mention" },
-                { hebrew: "יָדַע", english: "to know, notice" },
-                { hebrew: "יָלַד", english: "to bring forth, bear" },
-                { hebrew: "יֶלֶד", english: "boy, male child" },
-                { hebrew: "קָרָא", english: "to call, proclaim" },
-                { hebrew: "עֵת", english: "time" },
-                { hebrew: "אָהַב", english: "to love" },
-                { hebrew: "אַהֲבָה", english: "love" },
-                { hebrew: "בְּרִית", english: "covenant" },
-                { hebrew: "בִּינָה", english: "understanding, discernment" },
-                { hebrew: "חָכְמָה", english: "wisdom, skill" },
-                { hebrew: "בֵּין", english: "between" },
-                { hebrew: "מִצְרַיִם", english: "Egypt" },
-                { hebrew: "שָׁנָה", english: "year" }
+                { hebrew: "וַיְהִי", english: "Qal Impf 3ms + waw consecutive < הָיָה", partOfSpeech: "verb" },
+                { hebrew: "זָכַר", english: "to remember, mention", partOfSpeech: "verb" },
+                { hebrew: "יָדַע", english: "to know, notice", partOfSpeech: "verb" },
+                { hebrew: "יָלַד", english: "to bring forth, bear", partOfSpeech: "verb" },
+                { hebrew: "יֶלֶד", english: "boy, male child", partOfSpeech: "noun" },
+                { hebrew: "קָרָא", english: "to call, proclaim", partOfSpeech: "verb" },
+                { hebrew: "עֵת", english: "time", partOfSpeech: "noun" },
+                { hebrew: "אָהַב", english: "to love", partOfSpeech: "verb" },
+                { hebrew: "אַהֲבָה", english: "love", partOfSpeech: "noun" },
+                { hebrew: "בְּרִית", english: "covenant", partOfSpeech: "noun" },
+                { hebrew: "בִּינָה", english: "understanding, discernment", partOfSpeech: "noun" },
+                { hebrew: "חָכְמָה", english: "wisdom, skill", partOfSpeech: "noun" },
+                { hebrew: "בֵּין", english: "between", partOfSpeech: "preposition" },
+                { hebrew: "מִצְרַיִם", english: "Egypt", partOfSpeech: "noun" },
+                { hebrew: "שָׁנָה", english: "year", partOfSpeech: "noun" }
             ],
             lesson13: [
-                { hebrew: "עָמַד", english: "to stand" },
-                { hebrew: "קוּם", english: "to rise, arise, stand" },
-                { hebrew: "נָתַן", english: "to give, put" },
-                { hebrew: "בָּנָה", english: "to build" },
-                { hebrew: "עָלָה", english: "to go up" },
-                { hebrew: "רַע", english: "evil, bad (also as רָע)" }
+                { hebrew: "עָמַד", english: "to stand", partOfSpeech: "verb" },
+                { hebrew: "קוּם", english: "to rise, arise, stand", partOfSpeech: "verb" },
+                { hebrew: "נָתַן", english: "to give, put", partOfSpeech: "verb" },
+                { hebrew: "בָּנָה", english: "to build", partOfSpeech: "verb" },
+                { hebrew: "עָלָה", english: "to go up", partOfSpeech: "verb" },
+                { hebrew: "רַע", english: "evil, bad (also as רָע)", partOfSpeech: "adjective" }
             ],
             lesson14: [
-                { hebrew: "אַל", english: "no, not" },
-                { hebrew: "קוּם", english: "rise (2ms impv.)" },
-                { hebrew: "שִׂים", english: "put, give (2ms impv.)" },
-                { hebrew: "בּוֹא", english: "come, enter (2ms impv.)" },
-                { hebrew: "תֵּן", english: "give (2ms impv.)" },
-                { hebrew: "קַח", english: "take (2ms impv.)" },
-                { hebrew: "לֵךְ", english: "go (2ms impv.)" },
-                { hebrew: "הֱיֵה", english: "be (2ms impv.)" },
-                { hebrew: "יְהִי", english: "let it be (3ms jus.)" },
-                { hebrew: "עָזַב", english: "to leave, abandon" },
-                { hebrew: "עָזַר", english: "to help" },
-                { hebrew: "צוּר", english: "rock" },
-                { hebrew: "צֶלֶם", english: "image, likeness" },
-                { hebrew: "עוֹלָם", english: "eternity, forever (world)" }
+                { hebrew: "אַל", english: "no, not", partOfSpeech: "adverb" },
+                { hebrew: "קוּם", english: "rise (2ms impv.)", partOfSpeech: "verb" },
+                { hebrew: "שִׂים", english: "put, give (2ms impv.)", partOfSpeech: "verb" },
+                { hebrew: "בּוֹא", english: "come, enter (2ms impv.)", partOfSpeech: "verb" },
+                { hebrew: "תֵּן", english: "give (2ms impv.)", partOfSpeech: "verb" },
+                { hebrew: "קַח", english: "take (2ms impv.)", partOfSpeech: "verb" },
+                { hebrew: "לֵךְ", english: "go (2ms impv.)", partOfSpeech: "verb" },
+                { hebrew: "הֱיֵה", english: "be (2ms impv.)", partOfSpeech: "verb" },
+                { hebrew: "יְהִי", english: "let it be (3ms jus.)", partOfSpeech: "verb" },
+                { hebrew: "עָזַב", english: "to leave, abandon", partOfSpeech: "verb" },
+                { hebrew: "עָזַר", english: "to help", partOfSpeech: "verb" },
+                { hebrew: "צוּר", english: "rock", partOfSpeech: "noun" },
+                { hebrew: "צֶלֶם", english: "image, likeness", partOfSpeech: "noun" },
+                { hebrew: "עוֹלָם", english: "eternity, forever (world)", partOfSpeech: "noun" }
             ],
             lesson15: [
-                { hebrew: "בֵּרַךְ/בָּרֵךְ", english: "to bless (Pi)" },
-                { hebrew: "דִּבֵּר", english: "to speak (Pi)" },
-                { hebrew: "כִּלָּה", english: "to complete, finish" },
-                { hebrew: "כִּבֵּד", english: "to make heavy, honor" },
-                { hebrew: "גָּדַל", english: "to be(come) great, strong" },
-                { hebrew: "הִלֵּל", english: "to praise (Pi)" },
-                { hebrew: "הֵיכָל", english: "palace, temple" },
-                { hebrew: "שָׁפַט", english: "to judge, govern" },
-                { hebrew: "צְדָקָה", english: "righteousness" },
-                { hebrew: "קָבַץ", english: "to gather" },
-                { hebrew: "צִוָּה", english: "to command (Pi)" },
-                { hebrew: "שִׁיר", english: "song, to sing" },
-                { hebrew: "שָׁרַת", english: "to minister, serve (Pi)" },
-                { hebrew: "עַיִן", english: "eye, spring (cstr. עֵין)" }
+                { hebrew: "בֵּרַךְ/בָּרֵךְ", english: "to bless (Pi)", partOfSpeech: "verb" },
+                { hebrew: "דִּבֵּר", english: "to speak (Pi)", partOfSpeech: "verb" },
+                { hebrew: "כִּלָּה", english: "to complete, finish", partOfSpeech: "verb" },
+                { hebrew: "כִּבֵּד", english: "to make heavy, honor", partOfSpeech: "verb" },
+                { hebrew: "גָּדַל", english: "to be(come) great, strong", partOfSpeech: "verb" },
+                { hebrew: "הִלֵּל", english: "to praise (Pi)", partOfSpeech: "verb" },
+                { hebrew: "הֵיכָל", english: "palace, temple", partOfSpeech: "noun" },
+                { hebrew: "שָׁפַט", english: "to judge, govern", partOfSpeech: "verb" },
+                { hebrew: "צְדָקָה", english: "righteousness", partOfSpeech: "noun" },
+                { hebrew: "קָבַץ", english: "to gather", partOfSpeech: "verb" },
+                { hebrew: "צִוָּה", english: "to command (Pi)", partOfSpeech: "verb" },
+                { hebrew: "שִׁיר", english: "song, to sing", partOfSpeech: "noun" },
+                { hebrew: "שָׁרַת", english: "to minister, serve (Pi)", partOfSpeech: "verb" },
+                { hebrew: "עַיִן", english: "eye, spring (cstr. עֵין)", partOfSpeech: "noun" }
             ],
             lesson16: [
-                { hebrew: "כָּתַב", english: "to write" },
-                { hebrew: "כָּרַת", english: "to cut" },
-                { hebrew: "יָרַד", english: "to go down" },
-                { hebrew: "מוּת", english: "to die, kill" },
-                { hebrew: "נָשָׂא", english: "to lift, carry" },
-                { hebrew: "עָבַר", english: "to pass over, through" },
-                { hebrew: "יָרֵא", english: "to fear, be afraid" },
-                { hebrew: "מָלֵא", english: "to be full, fill" },
-                { hebrew: "חָזַק", english: "to be(come) strong" },
-                { hebrew: "שָׁלַח", english: "to send, stretch out" },
-                { hebrew: "שָׁכַב", english: "to lie down, have sexual intercourse" },
-                { hebrew: "קָטֹן", english: "small, insignificant" },
-                { hebrew: "רָפָא", english: "to heal (someone)" }
+                { hebrew: "כָּתַב", english: "to write", partOfSpeech: "verb" },
+                { hebrew: "כָּרַת", english: "to cut", partOfSpeech: "verb" },
+                { hebrew: "יָרַד", english: "to go down", partOfSpeech: "verb" },
+                { hebrew: "מוּת", english: "to die, kill", partOfSpeech: "verb" },
+                { hebrew: "נָשָׂא", english: "to lift, carry", partOfSpeech: "verb" },
+                { hebrew: "עָבַר", english: "to pass over, through", partOfSpeech: "verb" },
+                { hebrew: "יָרֵא", english: "to fear, be afraid", partOfSpeech: "verb" },
+                { hebrew: "מָלֵא", english: "to be full, fill", partOfSpeech: "verb" },
+                { hebrew: "חָזַק", english: "to be(come) strong", partOfSpeech: "verb" },
+                { hebrew: "שָׁלַח", english: "to send, stretch out", partOfSpeech: "verb" },
+                { hebrew: "שָׁכַב", english: "to lie down, have sexual intercourse", partOfSpeech: "verb" },
+                { hebrew: "קָטֹן", english: "small, insignificant", partOfSpeech: "adjective" },
+                { hebrew: "רָפָא", english: "to heal (someone)", partOfSpeech: "verb" }
             ],
             lesson17: [
-                { hebrew: "רְאוֹת", english: "Qal Infinitive Construct of רָאָה (seeing/to see)" },
-                { hebrew: "דַּעַת", english: "Qal Infinitive Construct of יָדַע (knowing/to know)" },
-                { hebrew: "עֲשׂוֹת", english: "Qal Infinitive Construct of עָשָׂה (doing/to do)" },
-                { hebrew: "הֱיוֹת", english: "Qal Infinitive Construct of הָיָה (being/to be)" },
-                { hebrew: "תֵּת", english: "Qal Infinitive Construct of נָתַן (giving/to give)" },
-                { hebrew: "שֶׁבֶת", english: "Qal Infinitive Construct of יָשַׁב (dwelling/to dwell)" },
-                { hebrew: "לֶכֶת", english: "Qal Infinitive Construct of הָלַךְ (going/to go)" },
-                { hebrew: "צֵאת", english: "Qal Infinitive Construct of יָצָא (going out/to go out)" },
-                { hebrew: "שָׂמַח", english: "to rejoice, be glad, be joyful" },
-                { hebrew: "אָחַז", english: "to seize, grasp, take" },
-                { hebrew: "מוּסָר", english: "correction, discipline, instruction" },
-                { hebrew: "בִּינָה", english: "understanding, intelligence, insight" }
+                { hebrew: "רְאוֹת", english: "Qal Infinitive Construct of רָאָה (seeing/to see)", partOfSpeech: "verb" },
+                { hebrew: "דַּעַת", english: "Qal Infinitive Construct of יָדַע (knowing/to know)", partOfSpeech: "verb" },
+                { hebrew: "עֲשׂוֹת", english: "Qal Infinitive Construct of עָשָׂה (doing/to do)", partOfSpeech: "verb" },
+                { hebrew: "הֱיוֹת", english: "Qal Infinitive Construct of הָיָה (being/to be)", partOfSpeech: "verb" },
+                { hebrew: "תֵּת", english: "Qal Infinitive Construct of נָתַן (giving/to give)", partOfSpeech: "verb" },
+                { hebrew: "שֶׁבֶת", english: "Qal Infinitive Construct of יָשַׁב (dwelling/to dwell)", partOfSpeech: "verb" },
+                { hebrew: "לֶכֶת", english: "Qal Infinitive Construct of הָלַךְ (going/to go)", partOfSpeech: "verb" },
+                { hebrew: "צֵאת", english: "Qal Infinitive Construct of יָצָא (going out/to go out)", partOfSpeech: "verb" },
+                { hebrew: "שָׂמַח", english: "to rejoice, be glad, be joyful", partOfSpeech: "verb" },
+                { hebrew: "אָחַז", english: "to seize, grasp, take", partOfSpeech: "verb" },
+                { hebrew: "מוּסָר", english: "correction, discipline, instruction", partOfSpeech: "noun" },
+                { hebrew: "בִּינָה", english: "understanding, intelligence, insight", partOfSpeech: "noun" }
             ],
             lesson18: [
-                { hebrew: "הַ", english: "This is the interrogative particle" },
-                { hebrew: "זָבַח", english: "to slaughter, sacrifice" },
-                { hebrew: "חָנָה", english: "to decline, encamp" },
-                { hebrew: "נָסַע", english: "to pull up, depart" },
-                { hebrew: "פָּנָה", english: "to turn" },
-                { hebrew: "פָּתַח", english: "to open" },
-                { hebrew: "רָדַף", english: "to pursue, persecute" },
-                { hebrew: "שָׁאַר", english: "to remain, survive" },
-                { hebrew: "נוּחַ", english: "to rest, settle down" },
-                { hebrew: "בָּמָה", english: "(cultic) high place, hill" },
-                { hebrew: "מִשְׁכָּן", english: "dwelling place, tabernacle" },
-                { hebrew: "נַחַל", english: "stream, brook" },
-                { hebrew: "רָעֵב", english: "famine, hunger" },
-                { hebrew: "רָעֵב", english: "hungry (adj.)" },
-                { hebrew: "קָדַשׁ", english: "to be holy, sanctify" }
+                { hebrew: "הַ", english: "This is the interrogative particle", partOfSpeech: "particle" },
+                { hebrew: "זָבַח", english: "to slaughter, sacrifice", partOfSpeech: "verb" },
+                { hebrew: "חָנָה", english: "to decline, encamp", partOfSpeech: "verb" },
+                { hebrew: "נָסַע", english: "to pull up, depart", partOfSpeech: "verb" },
+                { hebrew: "פָּנָה", english: "to turn", partOfSpeech: "verb" },
+                { hebrew: "פָּתַח", english: "to open", partOfSpeech: "verb" },
+                { hebrew: "רָדַף", english: "to pursue, persecute", partOfSpeech: "verb" },
+                { hebrew: "שָׁאַר", english: "to remain, survive", partOfSpeech: "verb" },
+                { hebrew: "נוּחַ", english: "to rest, settle down", partOfSpeech: "verb" },
+                { hebrew: "בָּמָה", english: "(cultic) high place, hill", partOfSpeech: "noun" },
+                { hebrew: "מִשְׁכָּן", english: "dwelling place, tabernacle", partOfSpeech: "noun" },
+                { hebrew: "נַחַל", english: "stream, brook", partOfSpeech: "noun" },
+                { hebrew: "רָעֵב", english: "famine, hunger", partOfSpeech: "noun" },
+                { hebrew: "רָעֵב", english: "hungry (adj.)", partOfSpeech: "adjective" },
+                { hebrew: "קָדַשׁ", english: "to be holy, sanctify", partOfSpeech: "verb" }
             ],
             lesson19: [
-                { hebrew: "בָּטַח", english: "to trust, be confident" },
-                { hebrew: "בָּכָה", english: "to weep (for)" },
-                { hebrew: "שָׂרַף", english: "to burn, destroy" },
-                { hebrew: "לָבַשׁ", english: "to clothe, be clothed" },
-                { hebrew: "פָּתַח", english: "to open" },
-                { hebrew: "פֶּתַח", english: "entrance, door" },
-                { hebrew: "דּוֹר", english: "generation" },
-                { hebrew: "חוּץ", english: "outside, street" },
-                { hebrew: "מְלָאכָה", english: "work, occupation" },
-                { hebrew: "פַּר", english: "bull, ox" },
-                { hebrew: "רֹב", english: "multitude, abundance" },
-                { hebrew: "שָׂפָה", english: "lip, language, edge" },
-                { hebrew: "עֲבֹדָה", english: "work, service, worship" },
-                { hebrew: "עֵדָה", english: "congregation, assembly" }
+                { hebrew: "בָּטַח", english: "to trust, be confident", partOfSpeech: "verb" },
+                { hebrew: "בָּכָה", english: "to weep (for)", partOfSpeech: "verb" },
+                { hebrew: "שָׂרַף", english: "to burn, destroy", partOfSpeech: "verb" },
+                { hebrew: "לָבַשׁ", english: "to clothe, be clothed", partOfSpeech: "verb" },
+                { hebrew: "פָּתַח", english: "to open", partOfSpeech: "verb" },
+                { hebrew: "פֶּתַח", english: "entrance, door", partOfSpeech: "noun" },
+                { hebrew: "דּוֹר", english: "generation", partOfSpeech: "noun" },
+                { hebrew: "חוּץ", english: "outside, street", partOfSpeech: "noun" },
+                { hebrew: "מְלָאכָה", english: "work, occupation", partOfSpeech: "noun" },
+                { hebrew: "פַּר", english: "bull, ox", partOfSpeech: "noun" },
+                { hebrew: "רֹב", english: "multitude, abundance", partOfSpeech: "noun" },
+                { hebrew: "שָׂפָה", english: "lip, language, edge", partOfSpeech: "noun" },
+                { hebrew: "עֲבֹדָה", english: "work, service, worship", partOfSpeech: "noun" },
+                { hebrew: "עֵדָה", english: "congregation, assembly", partOfSpeech: "noun" }
             ],
             lesson20: [
-                { hebrew: "אֶחָד", english: "one (m)" },
-                { hebrew: "אַחַת", english: "one (f)" },
-                { hebrew: "שְׁנַיִם", english: "two (m)" },
-                { hebrew: "שְׁתַּיִם", english: "two (f)" },
-                { hebrew: "שָׁלֹשׁ", english: "three" },
-                { hebrew: "אַרְבַּע", english: "four" },
-                { hebrew: "חָמֵשׁ", english: "five" },
-                { hebrew: "שֵׁשׁ", english: "six" },
-                { hebrew: "שֶׁבַע", english: "seven" },
-                { hebrew: "שְׁמֹנֶה", english: "eight" },
-                { hebrew: "תֵּשַׁע", english: "nine" },
-                { hebrew: "עֶשֶׂר", english: "ten" },
-                { hebrew: "אַחַד עָשָׂר", english: "eleven" },
-                { hebrew: "שְׁנֵים עָשָׂר", english: "twelve" },
-                { hebrew: "מֵאָה", english: "one hundred" },
-                { hebrew: "אֶלֶף", english: "one thousand" },
-                { hebrew: "רְבָבָה", english: "ten thousand" },
-                { hebrew: "רִאשׁוֹן", english: "first" },
-                { hebrew: "שֵׁנִי", english: "second (m)" },
-                { hebrew: "שֵׁנִית", english: "second (f)" },
-                { hebrew: "רְבִיעִי", english: "fourth (m)" },
-                { hebrew: "רְבִיעִית", english: "fourth (f)" }
+                { hebrew: "אֶחָד", english: "one (m)", partOfSpeech: "number" },
+                { hebrew: "אַחַת", english: "one (f)", partOfSpeech: "number" },
+                { hebrew: "שְׁנַיִם", english: "two (m)", partOfSpeech: "number" },
+                { hebrew: "שְׁתַּיִם", english: "two (f)", partOfSpeech: "number" },
+                { hebrew: "שָׁלֹשׁ", english: "three", partOfSpeech: "number" },
+                { hebrew: "אַרְבַּע", english: "four", partOfSpeech: "number" },
+                { hebrew: "חָמֵשׁ", english: "five", partOfSpeech: "number" },
+                { hebrew: "שֵׁשׁ", english: "six", partOfSpeech: "number" },
+                { hebrew: "שֶׁבַע", english: "seven", partOfSpeech: "number" },
+                { hebrew: "שְׁמֹנֶה", english: "eight", partOfSpeech: "number" },
+                { hebrew: "תֵּשַׁע", english: "nine", partOfSpeech: "number" },
+                { hebrew: "עֶשֶׂר", english: "ten", partOfSpeech: "number" },
+                { hebrew: "אַחַד עָשָׂר", english: "eleven", partOfSpeech: "number" },
+                { hebrew: "שְׁנֵים עָשָׂר", english: "twelve", partOfSpeech: "number" },
+                { hebrew: "מֵאָה", english: "one hundred", partOfSpeech: "number" },
+                { hebrew: "אֶלֶף", english: "one thousand", partOfSpeech: "number" },
+                { hebrew: "רְבָבָה", english: "ten thousand", partOfSpeech: "number" },
+                { hebrew: "רִאשׁוֹן", english: "first", partOfSpeech: "number" },
+                { hebrew: "שֵׁנִי", english: "second (m)", partOfSpeech: "number" },
+                { hebrew: "שֵׁנִית", english: "second (f)", partOfSpeech: "number" },
+                { hebrew: "רְבִיעִי", english: "fourth (m)", partOfSpeech: "number" },
+                { hebrew: "רְבִיעִית", english: "fourth (f)", partOfSpeech: "number" }
             ],
             lesson21: [
-                { hebrew: "אָסַר", english: "to tie, fetter" },
-                { hebrew: "זָעַק", english: "to cry (out), summon" },
-                { hebrew: "חָזָה", english: "to see, perceive" },
-                { hebrew: "חָנַן", english: "to be gracious, to favor" },
-                { hebrew: "מָאַס", english: "to refuse, reject" },
-                { hebrew: "רָחַץ", english: "to wash, bathe" },
-                { hebrew: "שָׂכַל", english: "to understand, prosper" },
-                { hebrew: "אָמַן", english: "to be faithful, believe" },
-                { hebrew: "כּוּן", english: "to be firm, establish" },
-                { hebrew: "יָשַׁע", english: "to save, be saved (Ni)" },
-                { hebrew: "נָהָר", english: "river, stream" },
-                { hebrew: "רֹעֶה", english: "shepherd" }
+                { hebrew: "אָסַר", english: "to tie, fetter", partOfSpeech: "verb" },
+                { hebrew: "זָעַק", english: "to cry (out), summon", partOfSpeech: "verb" },
+                { hebrew: "חָזָה", english: "to see, perceive", partOfSpeech: "verb" },
+                { hebrew: "חָנַן", english: "to be gracious, to favor", partOfSpeech: "verb" },
+                { hebrew: "מָאַס", english: "to refuse, reject", partOfSpeech: "verb" },
+                { hebrew: "רָחַץ", english: "to wash, bathe", partOfSpeech: "verb" },
+                { hebrew: "שָׂכַל", english: "to understand, prosper", partOfSpeech: "verb" },
+                { hebrew: "אָמַן", english: "to be faithful, believe", partOfSpeech: "verb" },
+                { hebrew: "כּוּן", english: "to be firm, establish", partOfSpeech: "verb" },
+                { hebrew: "יָשַׁע", english: "to save, be saved (Ni)", partOfSpeech: "verb" },
+                { hebrew: "נָהָר", english: "river, stream", partOfSpeech: "noun" },
+                { hebrew: "רֹעֶה", english: "shepherd", partOfSpeech: "noun" }
             ],
             lesson22: [
-                { hebrew: "רוּם", english: "to be high, rise" },
-                { hebrew: "גָּלָה", english: "to uncover, reveal" },
-                { hebrew: "בָּחַר", english: "to choose, test" },
-                { hebrew: "חָפֵץ", english: "to delight in, desire" },
-                { hebrew: "דָּרַשׁ", english: "to seek, ask for" },
-                { hebrew: "שָׁכַן", english: "to settle, dwell, inhabit" },
-                { hebrew: "שָׁאַל", english: "to ask (of), request" },
-                { hebrew: "הָרַג", english: "to kill, slay" },
-                { hebrew: "מִסְפָּר", english: "number" },
-                { hebrew: "שֶׁמֶשׁ", english: "sun" },
-                { hebrew: "בַּעַל", english: "master, husband, Baal" },
-                { hebrew: "יַעַן", english: "on account of" }
+                { hebrew: "רוּם", english: "to be high, rise", partOfSpeech: "verb" },
+                { hebrew: "גָּלָה", english: "to uncover, reveal", partOfSpeech: "verb" },
+                { hebrew: "בָּחַר", english: "to choose, test", partOfSpeech: "verb" },
+                { hebrew: "חָפֵץ", english: "to delight in, desire", partOfSpeech: "verb" },
+                { hebrew: "דָּרַשׁ", english: "to seek, ask for", partOfSpeech: "verb" },
+                { hebrew: "שָׁכַן", english: "to settle, dwell, inhabit", partOfSpeech: "verb" },
+                { hebrew: "שָׁאַל", english: "to ask (of), request", partOfSpeech: "verb" },
+                { hebrew: "הָרַג", english: "to kill, slay", partOfSpeech: "verb" },
+                { hebrew: "מִסְפָּר", english: "number", partOfSpeech: "noun" },
+                { hebrew: "שֶׁמֶשׁ", english: "sun", partOfSpeech: "noun" },
+                { hebrew: "בַּעַל", english: "master, husband, Baal", partOfSpeech: "noun" },
+                { hebrew: "יַעַן", english: "on account of", partOfSpeech: "preposition" }
             ],
             lesson23: [
-                { hebrew: "טָהוֹר", english: "clean, pure" },
-                { hebrew: "כְּסִיל", english: "fool" },
-                { hebrew: "עָנִי", english: "poor, humble" },
-                { hebrew: "שֶׁמֶן", english: "oil, fat" },
-                { hebrew: "שֹׁפֵט", english: "judge, deliverer" },
-                { hebrew: "אֵיךְ", english: "how; (also as אֵיכָה)" },
-                { hebrew: "אֹהֶל", english: "tent" },
-                { hebrew: "הָרָה", english: "to conceive" },
-                { hebrew: "פָּנָה", english: "to turn about/aside" },
-                { hebrew: "חָסָה", english: "to seek refuge" },
-                { hebrew: "עָנָה", english: "to answer" },
-                { hebrew: "פָּדָה", english: "to ransom, redeem" },
-                { hebrew: "רָבָה", english: "to be(come) many, multiply" }
+                { hebrew: "טָהוֹר", english: "clean, pure", partOfSpeech: "adjective" },
+                { hebrew: "כְּסִיל", english: "fool", partOfSpeech: "noun" },
+                { hebrew: "עָנִי", english: "poor, humble", partOfSpeech: "adjective" },
+                { hebrew: "שֶׁמֶן", english: "oil, fat", partOfSpeech: "noun" },
+                { hebrew: "שֹׁפֵט", english: "judge, deliverer", partOfSpeech: "noun" },
+                { hebrew: "אֵיךְ", english: "how; (also as אֵיכָה)", partOfSpeech: "adverb" },
+                { hebrew: "אֹהֶל", english: "tent", partOfSpeech: "noun" },
+                { hebrew: "הָרָה", english: "to conceive", partOfSpeech: "verb" },
+                { hebrew: "פָּנָה", english: "to turn about/aside", partOfSpeech: "verb" },
+                { hebrew: "חָסָה", english: "to seek refuge", partOfSpeech: "verb" },
+                { hebrew: "עָנָה", english: "to answer", partOfSpeech: "verb" },
+                { hebrew: "פָּדָה", english: "to ransom, redeem", partOfSpeech: "verb" },
+                { hebrew: "רָבָה", english: "to be(come) many, multiply", partOfSpeech: "verb" }
             ],
             lesson24: [
-                { hebrew: "חָטָא", english: "to sin, miss (a mark)" },
-                { hebrew: "כּוּן", english: "to be firm, establish" },
-                { hebrew: "גּוּר", english: "to sojourn, abide" },
-                { hebrew: "עוּר", english: "to be awake, stir up" },
-                { hebrew: "לָמַד", english: "to learn; (Pi) teach" },
-                { hebrew: "מָשַׁל", english: "to rule, govern" },
-                { hebrew: "עָנָה", english: "(Pi) to afflict, humiliate" },
-                { hebrew: "מָכַר", english: "to sell, hand over" },
-                { hebrew: "יָעַץ", english: "to advise, counsel" },
-                { hebrew: "יָכֹל", english: "to be able" },
-                { hebrew: "עַד", english: "unto, until, while" },
-                { hebrew: "שֶׁקֶר", english: "lie, falsehood" },
-                { hebrew: "כָּנָף", english: "wing, edge" },
-                { hebrew: "עַמּוּד", english: "pillar, column" }
+                { hebrew: "חָטָא", english: "to sin, miss (a mark)", partOfSpeech: "verb" },
+                { hebrew: "כּוּן", english: "to be firm, establish", partOfSpeech: "verb" },
+                { hebrew: "גּוּר", english: "to sojourn, abide", partOfSpeech: "verb" },
+                { hebrew: "עוּר", english: "to be awake, stir up", partOfSpeech: "verb" },
+                { hebrew: "לָמַד", english: "to learn; (Pi) teach", partOfSpeech: "verb" },
+                { hebrew: "מָשַׁל", english: "to rule, govern", partOfSpeech: "verb" },
+                { hebrew: "עָנָה", english: "(Pi) to afflict, humiliate", partOfSpeech: "verb" },
+                { hebrew: "מָכַר", english: "to sell, hand over", partOfSpeech: "verb" },
+                { hebrew: "יָעַץ", english: "to advise, counsel", partOfSpeech: "verb" },
+                { hebrew: "יָכֹל", english: "to be able", partOfSpeech: "verb" },
+                { hebrew: "עַד", english: "unto, until, while", partOfSpeech: "preposition" },
+                { hebrew: "שֶׁקֶר", english: "lie, falsehood", partOfSpeech: "noun" },
+                { hebrew: "כָּנָף", english: "wing, edge", partOfSpeech: "noun" },
+                { hebrew: "עַמּוּד", english: "pillar, column", partOfSpeech: "noun" }
             ],
             lesson25: [
-                { hebrew: "נָפַל", english: "to fall, fall upon" },
-                { hebrew: "פֹּה", english: "here, at this place" },
-                { hebrew: "סוּר", english: "to turn aside, leave" },
-                { hebrew: "אֹזֶן", english: "ear (f.s.)" },
-                { hebrew: "זָבַח", english: "sacrifice" },
-                { hebrew: "אַיִל", english: "ram, mighty" },
-                { hebrew: "גִּבּוֹר", english: "hero, mighty" },
-                { hebrew: "צָפוֹן", english: "north, northern" },
-                { hebrew: "פֶּן", english: "lest, otherwise" },
-                { hebrew: "יָסַף", english: "to add, continue" },
-                { hebrew: "נֶגֶד", english: "opposite, in front of" },
-                { hebrew: "רֵעַ", english: "friend, companion" },
-                { hebrew: "שָׁתָה", english: "to drink" }
+                { hebrew: "נָפַל", english: "to fall, fall upon", partOfSpeech: "verb" },
+                { hebrew: "פֹּה", english: "here, at this place", partOfSpeech: "adverb" },
+                { hebrew: "סוּר", english: "to turn aside, leave", partOfSpeech: "verb" },
+                { hebrew: "אֹזֶן", english: "ear (f.s.)", partOfSpeech: "noun" },
+                { hebrew: "זֶבַח", english: "sacrifice", partOfSpeech: "noun" },
+                { hebrew: "אַיִל", english: "ram, mighty", partOfSpeech: "noun" },
+                { hebrew: "גִּבּוֹר", english: "hero, mighty", partOfSpeech: "noun" },
+                { hebrew: "צָפוֹן", english: "north, northern", partOfSpeech: "noun" },
+                { hebrew: "פֶּן", english: "lest, otherwise", partOfSpeech: "conjunction" },
+                { hebrew: "יָסַף", english: "to add, continue", partOfSpeech: "verb" },
+                { hebrew: "נֶגֶד", english: "opposite, in front of", partOfSpeech: "preposition" },
+                { hebrew: "רֵעַ", english: "friend, companion", partOfSpeech: "noun" },
+                { hebrew: "שָׁתָה", english: "to drink", partOfSpeech: "verb" }
             ],
             lesson26: [
-                { hebrew: "אָבָה", english: "to be willing, agree" },
-                { hebrew: "אָבַד", english: "to perish, destroy" },
-                { hebrew: "אָפָה", english: "to bake" },
-                { hebrew: "אָמֵץ", english: "to be strong, brave" },
-                { hebrew: "סָבַב", english: "to go around" },
-                { hebrew: "תָּמַם", english: "to be finished" },
-                { hebrew: "אָרַר", english: "to curse" },
-                { hebrew: "אֵיפֹה", english: "where?" }
+                { hebrew: "אָבָה", english: "to be willing, agree", partOfSpeech: "verb" },
+                { hebrew: "אָבַד", english: "to perish, destroy", partOfSpeech: "verb" },
+                { hebrew: "אָפָה", english: "to bake", partOfSpeech: "verb" },
+                { hebrew: "אָמֵץ", english: "to be strong, brave", partOfSpeech: "verb" },
+                { hebrew: "סָבַב", english: "to go around", partOfSpeech: "verb" },
+                { hebrew: "תָּמַם", english: "to be finished", partOfSpeech: "verb" },
+                { hebrew: "אָרַר", english: "to curse", partOfSpeech: "verb" },
+                { hebrew: "אֵיפֹה", english: "where?", partOfSpeech: "adverb" }
             ]
         };
 
@@ -1352,6 +1630,12 @@
             maxMasteryInterval: 180 // Maximum days between reviews for mastered words
         };
 
+        // Daily Challenge Configuration
+        const DAILY_CHALLENGE_CONFIG = {
+            wordsCount: 15,
+            storageKey: 'hebrewDailyChallenge'
+        };
+
         // App state
         let currentDeck = [];
         let currentCardIndex = 0;
@@ -1359,6 +1643,9 @@
         let selectedLessons = new Set();
         let shuffleEnabled = false;
         let reviewMode = false;
+        let isDailyChallenge = false;
+        let searchQuery = '';
+        let activeFilter = 'all';
         let progress = JSON.parse(localStorage.getItem('hebrewProgress') || '{}');
 
         // DOM elements
@@ -1374,6 +1661,8 @@
         const shuffleOption = document.getElementById('shuffleOption');
         const reviewOption = document.getElementById('reviewOption');
         const startButton = document.getElementById('startButton');
+        const dailyChallengeBtn = document.getElementById('dailyChallengeBtn');
+        const challengeStatus = document.getElementById('challengeStatus');
         const backButton = document.getElementById('backButton');
         const flashcard = document.getElementById('flashcard');
         const hebrewText = document.getElementById('hebrewText');
@@ -1382,8 +1671,7 @@
         const mediumBtn = document.getElementById('mediumBtn');
         const hardBtn = document.getElementById('hardBtn');
         const flashOverlay = document.getElementById('flashOverlay');
-        const homeProgressFill = document.getElementById('homeProgressFill');
-        const homeProgressSummary = document.getElementById('homeProgressSummary');
+        const compactProgressFill = document.getElementById('compactProgressFill');
         const sessionInfo = document.getElementById('sessionInfo');
         const completionModal = document.getElementById('completionModal');
         const reviewMessage = document.getElementById('reviewMessage');
@@ -1394,9 +1682,21 @@
         const difficultyIndicatorBack = document.getElementById('difficultyIndicatorBack');
         const masteryBadge = document.getElementById('masteryBadge');
         const masteryBadgeBack = document.getElementById('masteryBadgeBack');
-        const totalStudiedNumber = document.getElementById('totalStudiedNumber');
-        const masteredNumber = document.getElementById('masteredNumber');
+        const compactStudiedNumber = document.getElementById('compactStudiedNumber');
+        const compactMasteredNumber = document.getElementById('compactMasteredNumber');
+        const progressDetailsBtn = document.getElementById('progressDetailsBtn');
+        const detailedProgressStats = document.getElementById('detailedProgressStats');
+        const easyCount = document.getElementById('easyCount');
+        const mediumCount = document.getElementById('mediumCount');
+        const hardCount = document.getElementById('hardCount');
+        const reviewCount = document.getElementById('reviewCount');
         const analyticsGrid = document.getElementById('analyticsGrid');
+        
+        // Search and filter elements
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const searchResults = document.getElementById('searchResults');
+        const filterControls = document.getElementById('filterControls');
 
         // Initialize app
         function init() {
@@ -1404,6 +1704,284 @@
             setupEventListeners();
             updateStartButton();
             updateHomeProgressDisplay();
+            updateDailyChallengeStatus();
+            setupSearchAndFilter();
+        }
+
+        // Setup search and filter functionality
+        function setupSearchAndFilter() {
+            // Search input
+            searchInput.addEventListener('input', handleSearch);
+            clearSearchBtn.addEventListener('click', clearSearch);
+
+            // Filter buttons
+            filterControls.addEventListener('click', handleFilterClick);
+
+            // Set initial filter
+            document.querySelector('[data-filter="all"]').classList.add('active');
+        }
+
+        // Handle search input
+        function handleSearch(e) {
+            searchQuery = e.target.value.toLowerCase().trim();
+            clearSearchBtn.classList.toggle('visible', searchQuery.length > 0);
+            
+            if (searchQuery.length === 0) {
+                // Show all lessons when search is empty
+                updateLessonVisibility();
+                updateSearchResults('');
+            } else {
+                // Filter lessons based on search
+                filterLessonsBySearch();
+            }
+        }
+
+        // Clear search
+        function clearSearch() {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.remove('visible');
+            updateLessonVisibility();
+            updateSearchResults('');
+        }
+
+        // Handle filter button clicks
+        function handleFilterClick(e) {
+            if (!e.target.classList.contains('filter-btn')) return;
+            
+            // Remove active class from all filter buttons
+            filterControls.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            e.target.classList.add('active');
+            activeFilter = e.target.dataset.filter;
+            
+            // Apply filter
+            if (searchQuery) {
+                filterLessonsBySearch();
+            } else {
+                updateLessonVisibility();
+            }
+        }
+
+        // Filter lessons based on search query
+        function filterLessonsBySearch() {
+            const matchingWords = [];
+            const matchingLessons = new Set();
+            
+            // Search through all vocabulary
+            Object.entries(vocabulary).forEach(([lessonKey, words]) => {
+                let filteredWords = words;
+                
+                // Apply part of speech filter first
+                if (activeFilter !== 'all') {
+                    filteredWords = filteredWords.filter(word => word.partOfSpeech === activeFilter);
+                }
+                
+                // Then apply search filter
+                filteredWords.forEach(word => {
+                    const hebrewMatch = word.hebrew.includes(searchQuery);
+                    const englishMatch = word.english.toLowerCase().includes(searchQuery);
+                    
+                    if (hebrewMatch || englishMatch) {
+                        matchingWords.push({ ...word, lesson: lessonKey });
+                        matchingLessons.add(lessonKey);
+                    }
+                });
+            });
+            
+            // Update lesson visibility
+            const lessonElements = lessonCheckboxes.querySelectorAll('.lesson-checkbox');
+            lessonElements.forEach(element => {
+                const lessonId = element.querySelector('input').value;
+                if (matchingLessons.has(lessonId)) {
+                    element.classList.remove('hidden');
+                    updateLessonWordCount(element);
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+            
+            // Update search results
+            updateSearchResults(matchingWords.length > 0 ? 
+                `Found ${matchingWords.length} matching word${matchingWords.length !== 1 ? 's' : ''} across ${matchingLessons.size} lesson${matchingLessons.size !== 1 ? 's' : ''}` :
+                'No matching words found');
+        }
+
+        // Update lesson visibility based on current filter and search
+        function updateLessonVisibility() {
+            if (activeFilter === 'all' && !searchQuery) {
+                // Show all lessons
+                const lessonElements = lessonCheckboxes.querySelectorAll('.lesson-checkbox');
+                lessonElements.forEach(element => {
+                    element.classList.remove('hidden');
+                    updateLessonWordCount(element);
+                });
+                return;
+            }
+            
+            // Filter by part of speech and/or search query
+            const lessonsWithMatchingWords = new Set();
+            
+            Object.entries(vocabulary).forEach(([lessonKey, words]) => {
+                let matchingWords = words;
+                
+                // Apply part of speech filter
+                if (activeFilter !== 'all') {
+                    matchingWords = matchingWords.filter(word => word.partOfSpeech === activeFilter);
+                }
+                
+                // Apply search filter
+                if (searchQuery) {
+                    matchingWords = matchingWords.filter(word => {
+                        const hebrewMatch = word.hebrew.includes(searchQuery);
+                        const englishMatch = word.english.toLowerCase().includes(searchQuery);
+                        return hebrewMatch || englishMatch;
+                    });
+                }
+                
+                if (matchingWords.length > 0) {
+                    lessonsWithMatchingWords.add(lessonKey);
+                }
+            });
+            
+            // Update lesson visibility and word counts
+            const lessonElements = lessonCheckboxes.querySelectorAll('.lesson-checkbox');
+            lessonElements.forEach(element => {
+                const lessonId = element.querySelector('input').value;
+                if (lessonsWithMatchingWords.has(lessonId)) {
+                    element.classList.remove('hidden');
+                    updateLessonWordCount(element);
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+        }
+
+        // Update lesson checkbox to show filtered word count
+        function updateLessonWordCount(lessonElement) {
+            const lessonId = lessonElement.querySelector('input').value;
+            const label = lessonElement.querySelector('label');
+            const lessonNumber = lessonId.replace('lesson', '');
+            
+            if (!vocabulary[lessonId]) {
+                label.textContent = `Lesson ${lessonNumber}`;
+                return;
+            }
+            
+            const allWords = vocabulary[lessonId];
+            let filteredWords = getFilteredWordsFromLesson(allWords);
+            
+            // Apply search filter if active
+            if (searchQuery) {
+                filteredWords = filteredWords.filter(word => {
+                    const hebrewMatch = word.hebrew.includes(searchQuery);
+                    const englishMatch = word.english.toLowerCase().includes(searchQuery);
+                    return hebrewMatch || englishMatch;
+                });
+            }
+            
+            if (activeFilter === 'all' && !searchQuery) {
+                label.textContent = `Lesson ${lessonNumber}`;
+            } else {
+                label.textContent = `Lesson ${lessonNumber} (${filteredWords.length})`;
+            }
+        }
+
+        // Update search results display
+        function updateSearchResults(message) {
+            searchResults.textContent = message;
+        }
+
+        // Daily Challenge functions
+        function getTodayString() {
+            const today = new Date();
+            return today.toISOString().split('T')[0]; // YYYY-MM-DD format
+        }
+
+        function getDailyChallengeData() {
+            const stored = localStorage.getItem(DAILY_CHALLENGE_CONFIG.storageKey);
+            return stored ? JSON.parse(stored) : {};
+        }
+
+        function saveDailyChallengeData(data) {
+            localStorage.setItem(DAILY_CHALLENGE_CONFIG.storageKey, JSON.stringify(data));
+        }
+
+        function isTodaysChallengeCompleted() {
+            const data = getDailyChallengeData();
+            const today = getTodayString();
+            return data[today] && data[today].completed;
+        }
+
+        function updateDailyChallengeStatus() {
+            const isCompleted = isTodaysChallengeCompleted();
+            
+            if (isCompleted) {
+                challengeStatus.textContent = "✅ Today's challenge completed!";
+                challengeStatus.style.color = '#10b981';
+                dailyChallengeBtn.textContent = 'Daily Challenge (Done)';
+            } else {
+                challengeStatus.textContent = '';
+                dailyChallengeBtn.textContent = 'Daily Challenge';
+            }
+        }
+
+        function generateDailyChallenge() {
+            const allWords = getAllWords();
+            const reviewWords = getReviewWords();
+            let challengeWords = [];
+            
+            // Prioritize review words, then fill with random words
+            challengeWords = [...reviewWords.slice(0, DAILY_CHALLENGE_CONFIG.wordsCount)];
+            
+            if (challengeWords.length < DAILY_CHALLENGE_CONFIG.wordsCount) {
+                const remainingSlots = DAILY_CHALLENGE_CONFIG.wordsCount - challengeWords.length;
+                const nonReviewWords = allWords.filter(word => 
+                    !reviewWords.find(rw => rw.hebrew === word.hebrew)
+                );
+                
+                // Shuffle and take remaining slots
+                const shuffledNonReview = [...nonReviewWords].sort(() => Math.random() - 0.5);
+                challengeWords.push(...shuffledNonReview.slice(0, remainingSlots));
+            }
+            
+            // Final shuffle of the challenge deck
+            return challengeWords.sort(() => Math.random() - 0.5);
+        }
+
+        function startDailyChallenge() {
+            if (isTodaysChallengeCompleted()) {
+                // Allow retrying completed challenge
+                const retry = confirm("You've already completed today's challenge! Would you like to try it again?");
+                if (!retry) return;
+            }
+            
+            currentDeck = generateDailyChallenge();
+            isDailyChallenge = true;
+            currentCardIndex = 0;
+            showStudyView();
+            showCurrentCard();
+        }
+
+        function completeDailyChallenge() {
+            const data = getDailyChallengeData();
+            const today = getTodayString();
+            
+            data[today] = {
+                completed: true,
+                completedAt: new Date().toISOString(),
+                wordsStudied: currentDeck.length
+            };
+            
+            saveDailyChallengeData(data);
+            updateDailyChallengeStatus();
+            
+            // Show special completion message for daily challenge
+            document.getElementById('modalTitle').textContent = '🏆 Daily Challenge Completed!';
+            document.getElementById('modalMessage').textContent = `Excellent work! You've completed today's challenge with ${currentDeck.length} words. Keep up the great progress!`;
         }
 
         // Generate lesson checkboxes
@@ -1434,6 +2012,9 @@
                 
                 lessonCheckboxes.appendChild(lessonDiv);
             }
+            
+            // Initialize lesson word counts
+            updateLessonVisibility();
         }
 
         // Select all lessons
@@ -1442,7 +2023,7 @@
                 const checkbox = document.getElementById(`lesson${i}`);
                 const lessonDiv = checkbox.closest('.lesson-checkbox');
                 
-                if (!checkbox.checked) {
+                if (!checkbox.checked && !lessonDiv.classList.contains('hidden')) {
                     checkbox.checked = true;
                     selectedLessons.add(`lesson${i}`);
                     lessonDiv.classList.add('selected');
@@ -1472,6 +2053,9 @@
         function setupEventListeners() {
             // Instructions toggle button
             instructionsToggleBtn.addEventListener('click', toggleInstructions);
+
+            // Progress details toggle button
+            progressDetailsBtn.addEventListener('click', toggleProgressDetails);
 
             // Lesson toggle button
             lessonToggleBtn.addEventListener('click', toggleLessonGrid);
@@ -1505,6 +2089,9 @@
 
             // Start button
             startButton.addEventListener('click', startStudySession);
+            
+            // Daily challenge button
+            dailyChallengeBtn.addEventListener('click', startDailyChallenge);
 
             // Back button
             backButton.addEventListener('click', showLessonSelector);
@@ -1526,6 +2113,16 @@
 
             // Touch gestures
             setupTouchGestures();
+        }
+
+        // Toggle progress details visibility
+        function toggleProgressDetails() {
+            const isExpanded = detailedProgressStats.classList.contains('expanded');
+            detailedProgressStats.classList.toggle('expanded');
+            progressDetailsBtn.classList.toggle('expanded', !isExpanded);
+            
+            const buttonText = isExpanded ? 'View Progress Details' : 'Hide Progress Details';
+            progressDetailsBtn.querySelector('span').textContent = buttonText;
         }
 
         // Toggle instructions visibility
@@ -1585,15 +2182,24 @@
             }
         }
 
-        // Get total words count
+        // Get total words count (considering active filter)
         function getTotalWords() {
             let total = 0;
             selectedLessons.forEach(lesson => {
                 if (vocabulary[lesson]) {
-                    total += vocabulary[lesson].length;
+                    const filteredWords = getFilteredWordsFromLesson(vocabulary[lesson]);
+                    total += filteredWords.length;
                 }
             });
             return total;
+        }
+
+        // Filter words from a lesson based on active filter
+        function getFilteredWordsFromLesson(lessonWords) {
+            if (activeFilter === 'all') {
+                return lessonWords;
+            }
+            return lessonWords.filter(word => word.partOfSpeech === activeFilter);
         }
 
         // Spaced Repetition System functions
@@ -1680,8 +2286,10 @@
             return reviewWords;
         }
 
-        // Start study session
+        // Start study session with enhanced filtering
         function startStudySession() {
+            isDailyChallenge = false;
+            
             if (reviewMode) {
                 currentDeck = getReviewWords();
                 if (currentDeck.length === 0) {
@@ -1692,7 +2300,9 @@
                 currentDeck = [];
                 selectedLessons.forEach(lesson => {
                     if (vocabulary[lesson]) {
-                        currentDeck.push(...vocabulary[lesson]);
+                        // Apply part of speech filter to the words from this lesson
+                        const filteredWords = getFilteredWordsFromLesson(vocabulary[lesson]);
+                        currentDeck.push(...filteredWords);
                     }
                 });
             }
@@ -1749,6 +2359,7 @@
             // Show header when returning to main screen
             document.querySelector('.header').style.display = 'flex';
             
+            isDailyChallenge = false;
             updateStartButton();
             updateHomeProgressDisplay();
         }
@@ -2078,42 +2689,25 @@
         function updateHomeProgressDisplay() {
             const totalWords = getAllWords().length;
             const studiedWords = Object.keys(progress).length;
-            const easyCount = Object.values(progress).filter(p => p.difficulty === 'easy').length;
-            const mediumCount = Object.values(progress).filter(p => p.difficulty === 'medium').length;
-            const hardCount = Object.values(progress).filter(p => p.difficulty === 'hard').length;
-            const masteredCount = Object.values(progress).filter(p => isWordMastered(p)).length;
+            const easyWordsCount = Object.values(progress).filter(p => p.difficulty === 'easy').length;
+            const mediumWordsCount = Object.values(progress).filter(p => p.difficulty === 'medium').length;
+            const hardWordsCount = Object.values(progress).filter(p => p.difficulty === 'hard').length;
+            const masteredWordsCount = Object.values(progress).filter(p => isWordMastered(p)).length;
+            const reviewWordsCount = getWordsNeedingReview();
 
-            // Update main numbers
-            totalStudiedNumber.textContent = studiedWords;
-            masteredNumber.textContent = masteredCount;
+            // Update compact progress display
+            compactStudiedNumber.textContent = studiedWords;
+            compactMasteredNumber.textContent = masteredWordsCount;
 
-            // Update progress bar
+            // Update compact progress bar
             const progressPercent = totalWords > 0 ? (studiedWords / totalWords) * 100 : 0;
-            homeProgressFill.style.width = `${progressPercent}%`;
+            compactProgressFill.style.width = `${progressPercent}%`;
 
-            // Update progress summary
-            homeProgressSummary.innerHTML = `
-                <div class="progress-item">
-                    <div class="progress-dot total"></div>
-                    <span>Total: ${studiedWords}/${totalWords}</span>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-dot easy"></div>
-                    <span>Easy: ${easyCount}</span>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-dot medium"></div>
-                    <span>Medium: ${mediumCount}</span>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-dot hard"></div>
-                    <span>Hard: ${hardCount}</span>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-dot mastered"></div>
-                    <span>Mastered: ${masteredCount}</span>
-                </div>
-            `;
+            // Update detailed progress cards
+            easyCount.textContent = easyWordsCount;
+            mediumCount.textContent = mediumWordsCount;
+            hardCount.textContent = hardWordsCount;
+            reviewCount.textContent = reviewWordsCount;
 
             // Update analytics
             updateAnalytics();
@@ -2149,7 +2743,8 @@
         // Update session info in study view
         function updateSessionInfo() {
             if (currentDeck.length > 0) {
-                const mode = reviewMode ? 'Review' : 'Study';
+                const mode = isDailyChallenge ? 'Daily Challenge' : 
+                            reviewMode ? 'Review' : 'Study';
                 sessionInfo.textContent = `${mode}: ${currentCardIndex + 1} of ${currentDeck.length}`;
             }
         }
@@ -2170,12 +2765,20 @@
 
         // Show completion modal
         function showCompletionModal() {
+            if (isDailyChallenge) {
+                completeDailyChallenge();
+            }
             completionModal.style.display = 'flex';
         }
 
         // Hide completion modal and return to lesson selector
         function hideCompletionModal() {
             completionModal.style.display = 'none';
+            
+            // Reset modal content for next use
+            document.getElementById('modalTitle').textContent = '🎉 Session Completed!';
+            document.getElementById('modalMessage').textContent = 'Great job studying! Your progress has been saved.';
+            
             showLessonSelector();
         }
 
