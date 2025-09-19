@@ -697,6 +697,38 @@
             margin-bottom: 30px;
         }
 
+        .study-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .fullscreen-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .fullscreen-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        .fullscreen-icon {
+            display: block;
+            font-size: 1.1rem;
+        }
+
         .back-button {
             background: #6b7280;
             color: white;
@@ -767,13 +799,17 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            border: 2px solid #e5e7eb;
-            background: white;
-            display: none;
+            border: 3px solid white;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s;
         }
 
         .difficulty-indicator.easy {
@@ -794,6 +830,13 @@
         .difficulty-indicator.mastered {
             background: #8b5cf6;
             border-color: #7c3aed;
+        }
+
+        .difficulty-indicator.mastered::after {
+            content: "✓";
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .mastery-badge {
@@ -831,8 +874,13 @@
         .navigation-controls {
             margin: 20px 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            gap: 15px;
+        }
+
+        .nav-buttons-row {
+            display: flex;
             gap: 20px;
         }
 
@@ -867,47 +915,86 @@
             text-align: center;
         }
 
-        .controls {
-            margin-top: 30px;
+        .card-difficulty-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            gap: 10px;
+            z-index: 20;
         }
 
-        .difficulty-btn {
-            padding: 12px 24px;
+        .card-difficulty-btn {
+            flex: 1;
+            padding: 12px 16px;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            opacity: 0.5;
-            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        .difficulty-btn.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .difficulty-btn.easy {
-            background: #10b981;
-            color: white;
-        }
-
-        .difficulty-btn.medium {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .difficulty-btn.hard {
+        .card-difficulty-btn.hard {
             background: #ef4444;
             color: white;
         }
 
-        .difficulty-btn:hover.active {
-            transform: translateY(-2px);
+        .card-difficulty-btn.hard:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        .card-difficulty-btn.medium {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .card-difficulty-btn.medium:hover {
+            background: #d97706;
+            transform: translateY(-1px);
+        }
+
+        .card-difficulty-btn.easy {
+            background: #10b981;
+            color: white;
+        }
+
+        .card-difficulty-btn.easy:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .mobile-instructions-toggle {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .mobile-instructions-btn {
+            background: none;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mobile-instructions-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .mobile-instructions-btn.expanded .toggle-icon {
+            transform: rotate(180deg);
         }
 
         .instructions {
@@ -915,6 +1002,10 @@
             text-align: center;
             color: #6b7280;
             font-size: 0.9rem;
+        }
+
+        .instructions.mobile-hidden {
+            display: none;
         }
 
         .flash-overlay {
@@ -979,8 +1070,19 @@
 
         @media (max-width: 768px) {
             .flashcard {
-                width: 320px;
-                height: 240px;
+                width: 90vw;
+                height: 60vh;
+                max-width: 500px;
+                max-height: 70vh;
+            }
+
+            .card-container {
+                height: 100%;
+                align-items: center;
+            }
+
+            .study-view {
+                padding: 10px;
             }
 
             .hebrew-text {
@@ -991,18 +1093,40 @@
                 font-size: 1.4rem;
             }
 
-            .controls {
-                flex-direction: column;
-                align-items: center;
+            .card-difficulty-controls {
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
+                gap: 8px;
+            }
+
+            .card-difficulty-btn {
+                padding: 14px 12px;
+                font-size: 1.1rem;
+                border-radius: 12px;
+            }
+
+            .mobile-instructions-toggle {
+                display: block;
+            }
+
+            .instructions {
+                margin-top: 10px;
             }
 
             .navigation-controls {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
+            }
+
+            .nav-buttons-row {
+                width: 100%;
+                gap: 15px;
             }
 
             .nav-btn {
-                min-width: 120px;
+                flex: 1;
+                min-width: unset;
             }
 
             .lesson-grid {
@@ -1027,6 +1151,20 @@
             }
 
             .filter-controls {
+                justify-content: center;
+            }
+
+            .progress-summary-row {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+
+            .compact-stat {
+                justify-content: center;
+            }
+
+            .progress-details-btn {
                 justify-content: center;
             }
         }
@@ -1195,8 +1333,13 @@
         <div id="studyView" class="study-view">
             <div class="study-header">
                 <button class="back-button" id="backButton">← Change Lessons</button>
-                <div class="current-session-info">
-                    <span class="session-info" id="sessionInfo">Session Progress</span>
+                <div class="study-header-controls">
+                    <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle Fullscreen">
+                        <span class="fullscreen-icon" id="fullscreenIcon">⛶</span>
+                    </button>
+                    <div class="current-session-info">
+                        <span class="session-info" id="sessionInfo">Session Progress</span>
+                    </div>
                 </div>
             </div>
 
@@ -1212,23 +1355,33 @@
                         <div class="mastery-badge" id="masteryBadgeBack">MASTERED</div>
                         <div class="difficulty-indicator" id="difficultyIndicatorBack"></div>
                         <div class="english-text" id="englishText"></div>
+                        
+                        <!-- Overlay difficulty buttons on the flipped card -->
+                        <div class="card-difficulty-controls" id="cardDifficultyControls">
+                            <button class="card-difficulty-btn hard" data-difficulty="hard">Hard</button>
+                            <button class="card-difficulty-btn medium" data-difficulty="medium">Medium</button>
+                            <button class="card-difficulty-btn easy" data-difficulty="easy">Easy</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="navigation-controls">
-                <button class="nav-btn" id="prevBtn">← Previous</button>
+                <div class="nav-buttons-row">
+                    <button class="nav-btn" id="prevBtn">← Previous</button>
+                    <button class="nav-btn" id="nextBtn">Next →</button>
+                </div>
                 <span class="card-counter" id="cardCounter">1 / 10</span>
-                <button class="nav-btn" id="nextBtn">Next →</button>
             </div>
 
-            <div class="controls">
-                <button class="difficulty-btn hard" id="hardBtn">Hard (←)</button>
-                <button class="difficulty-btn medium" id="mediumBtn">Medium (↓)</button>
-                <button class="difficulty-btn easy" id="easyBtn">Easy (→)</button>
+            <div class="mobile-instructions-toggle">
+                <button class="mobile-instructions-btn" id="mobileInstructionsBtn">
+                    <span>ℹ Instructions</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
             </div>
 
-            <div class="instructions">
+            <div class="instructions" id="studyInstructions">
                 Click card or press Space to flip • Use arrow keys or click buttons to rate difficulty • Use Previous/Next to navigate • Press Esc to return
             </div>
 
@@ -1664,12 +1817,11 @@
         const dailyChallengeBtn = document.getElementById('dailyChallengeBtn');
         const challengeStatus = document.getElementById('challengeStatus');
         const backButton = document.getElementById('backButton');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const fullscreenIcon = document.getElementById('fullscreenIcon');
         const flashcard = document.getElementById('flashcard');
         const hebrewText = document.getElementById('hebrewText');
         const englishText = document.getElementById('englishText');
-        const easyBtn = document.getElementById('easyBtn');
-        const mediumBtn = document.getElementById('mediumBtn');
-        const hardBtn = document.getElementById('hardBtn');
         const flashOverlay = document.getElementById('flashOverlay');
         const compactProgressFill = document.getElementById('compactProgressFill');
         const sessionInfo = document.getElementById('sessionInfo');
@@ -1691,6 +1843,8 @@
         const hardCount = document.getElementById('hardCount');
         const reviewCount = document.getElementById('reviewCount');
         const analyticsGrid = document.getElementById('analyticsGrid');
+        const mobileInstructionsBtn = document.getElementById('mobileInstructionsBtn');
+        const studyInstructions = document.getElementById('studyInstructions');
         
         // Search and filter elements
         const searchInput = document.getElementById('searchInput');
@@ -1706,6 +1860,7 @@
             updateHomeProgressDisplay();
             updateDailyChallengeStatus();
             setupSearchAndFilter();
+            initializeMobileInstructions();
         }
 
         // Setup search and filter functionality
@@ -2054,6 +2209,9 @@
             // Instructions toggle button
             instructionsToggleBtn.addEventListener('click', toggleInstructions);
 
+            // Mobile instructions toggle button
+            mobileInstructionsBtn.addEventListener('click', toggleMobileInstructions);
+
             // Progress details toggle button
             progressDetailsBtn.addEventListener('click', toggleProgressDetails);
 
@@ -2096,13 +2254,21 @@
             // Back button
             backButton.addEventListener('click', showLessonSelector);
 
+            // Fullscreen button
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+
             // Card interactions
             flashcard.addEventListener('click', flipCard);
 
-            // Difficulty buttons
-            easyBtn.addEventListener('click', () => rateDifficulty('easy'));
-            mediumBtn.addEventListener('click', () => rateDifficulty('medium'));
-            hardBtn.addEventListener('click', () => rateDifficulty('hard'));
+            // Card overlay difficulty buttons
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('card-difficulty-btn')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const difficulty = e.target.dataset.difficulty;
+                    rateDifficulty(difficulty);
+                }
+            });
 
             // Navigation buttons
             prevBtn.addEventListener('click', goToPreviousCard);
@@ -2113,6 +2279,73 @@
 
             // Touch gestures
             setupTouchGestures();
+
+            // Fullscreen change events
+            document.addEventListener('fullscreenchange', updateFullscreenIcon);
+            document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
+            document.addEventListener('mozfullscreenchange', updateFullscreenIcon);
+            document.addEventListener('MSFullscreenChange', updateFullscreenIcon);
+        }
+
+        // Toggle mobile instructions visibility
+        function toggleMobileInstructions() {
+            const isExpanded = studyInstructions.classList.contains('mobile-hidden');
+            studyInstructions.classList.toggle('mobile-hidden');
+            mobileInstructionsBtn.classList.toggle('expanded', isExpanded);
+        }
+
+        // Fullscreen functionality
+        function toggleFullscreen() {
+            if (!document.fullscreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement && 
+                !document.msFullscreenElement) {
+                // Enter fullscreen
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        function updateFullscreenIcon() {
+            const isFullscreen = document.fullscreenElement || 
+                                document.webkitFullscreenElement || 
+                                document.mozFullScreenElement || 
+                                document.msFullscreenElement;
+            
+            if (isFullscreen) {
+                fullscreenIcon.textContent = '⛉'; // Exit fullscreen icon
+                fullscreenBtn.title = 'Exit Fullscreen';
+            } else {
+                fullscreenIcon.textContent = '⛶'; // Enter fullscreen icon
+                fullscreenBtn.title = 'Enter Fullscreen';
+            }
+        }
+
+        // Initialize mobile instructions state
+        function initializeMobileInstructions() {
+            // Hide instructions by default on mobile
+            if (window.innerWidth <= 768) {
+                studyInstructions.classList.add('mobile-hidden');
+            }
         }
 
         // Toggle progress details visibility
@@ -2341,8 +2574,6 @@
             studyView.style.display = 'flex';
             reviewMessage.style.display = 'none';
             flashcard.style.display = 'block';
-            document.querySelector('.controls').style.display = 'flex';
-            document.querySelector('.instructions').style.display = 'block';
             document.querySelector('.navigation-controls').style.display = 'flex';
             
             // Hide header during study mode for focused learning
@@ -2369,7 +2600,6 @@
             // First reset to front side to prevent seeing next card's back
             isFlipped = false;
             flashcard.classList.remove('flipped');
-            setDifficultyButtonsActive(false);
             
             // Small delay before loading new content to ensure clean transition
             setTimeout(() => {
@@ -2385,11 +2615,34 @@
                 // Update difficulty indicators and mastery badges
                 updateDifficultyIndicator(card);
                 
+                // Setup overlay button event listeners
+                setupCardDifficultyButtons();
+                
                 // Update navigation
                 updateNavigation();
                 
                 updateSessionInfo();
             }, 100);
+        }
+
+        // Setup card difficulty button event listeners
+        function setupCardDifficultyButtons() {
+            const cardDifficultyBtns = document.querySelectorAll('.card-difficulty-btn');
+            cardDifficultyBtns.forEach(btn => {
+                // Remove existing listeners to avoid duplicates
+                btn.replaceWith(btn.cloneNode(true));
+            });
+            
+            // Add fresh event listeners
+            const freshButtons = document.querySelectorAll('.card-difficulty-btn');
+            freshButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const difficulty = btn.dataset.difficulty;
+                    rateDifficulty(difficulty);
+                });
+            });
         }
 
         // Update difficulty indicator and mastery status
@@ -2409,23 +2662,25 @@
                     masteryBadgeBack.style.display = 'block';
                     difficultyIndicator.classList.add('mastered');
                     difficultyIndicatorBack.classList.add('mastered');
-                    difficultyIndicator.style.display = 'block';
-                    difficultyIndicatorBack.style.display = 'block';
+                    // Always show indicators for mastered words
+                    difficultyIndicator.style.display = 'flex';
+                    difficultyIndicatorBack.style.display = 'flex';
                 } else if (savedProgress.difficulty) {
                     // Show the previously selected difficulty
                     difficultyIndicator.classList.add(savedProgress.difficulty);
                     difficultyIndicatorBack.classList.add(savedProgress.difficulty);
-                    difficultyIndicator.style.display = 'block';
-                    difficultyIndicatorBack.style.display = 'block';
+                    // Always show indicators when there's a saved difficulty
+                    difficultyIndicator.style.display = 'flex';
+                    difficultyIndicatorBack.style.display = 'flex';
                 } else {
-                    // Hide indicators if no previous difficulty
-                    difficultyIndicator.style.display = 'none';
-                    difficultyIndicatorBack.style.display = 'none';
+                    // Show neutral indicator for words that have been seen but not rated
+                    difficultyIndicator.style.display = 'flex';
+                    difficultyIndicatorBack.style.display = 'flex';
                 }
             } else {
-                // Hide indicators if no progress data
-                difficultyIndicator.style.display = 'none';
-                difficultyIndicatorBack.style.display = 'none';
+                // Show neutral indicator for new words
+                difficultyIndicator.style.display = 'flex';
+                difficultyIndicatorBack.style.display = 'flex';
             }
         }
 
@@ -2459,14 +2714,6 @@
         function flipCard() {
             isFlipped = !isFlipped;
             flashcard.classList.toggle('flipped', isFlipped);
-            setDifficultyButtonsActive(isFlipped);
-        }
-
-        // Set difficulty buttons active state
-        function setDifficultyButtonsActive(active) {
-            [easyBtn, mediumBtn, hardBtn].forEach(btn => {
-                btn.classList.toggle('active', active);
-            });
         }
 
         // Rate difficulty with enhanced SRS tracking
@@ -2534,11 +2781,11 @@
             // Update home progress immediately
             updateHomeProgressDisplay();
 
-            // Move to next card after flash
+            // Move to next card after flash with a longer delay to ensure flash is visible
             setTimeout(() => {
                 currentCardIndex++;
                 showCurrentCard();
-            }, 500);
+            }, 600);
         }
 
         // Flash effect
