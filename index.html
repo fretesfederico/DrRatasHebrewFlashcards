@@ -2315,9 +2315,17 @@
 
         // Toggle mobile instructions visibility
         function toggleMobileInstructions() {
-            const isExpanded = studyInstructions.classList.contains('mobile-hidden');
-            studyInstructions.classList.toggle('mobile-hidden');
-            mobileInstructionsBtn.classList.toggle('expanded', isExpanded);
+            const isHidden = studyInstructions.classList.contains('mobile-hidden');
+            
+            if (isHidden) {
+                // Show instructions
+                studyInstructions.classList.remove('mobile-hidden');
+                mobileInstructionsBtn.classList.add('expanded');
+            } else {
+                // Hide instructions
+                studyInstructions.classList.add('mobile-hidden');
+                mobileInstructionsBtn.classList.remove('expanded');
+            }
         }
 
         // Fullscreen functionality
