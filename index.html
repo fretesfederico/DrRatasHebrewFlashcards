@@ -1308,6 +1308,9 @@
                 </div>
                 <div class="filter-controls" id="filterControls">
                     <button class="filter-btn" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="new">New Words</button>
+                    <button class="filter-btn" data-filter="hard">Hard Words</button>
+                    <button class="filter-btn" data-filter="medium">Medium Words</button>
                     <button class="filter-btn" data-filter="noun">Nouns</button>
                     <button class="filter-btn" data-filter="verb">Verbs</button>
                     <button class="filter-btn" data-filter="adjective">Adjectives</button>
@@ -1825,6 +1828,9 @@
         let isDailyChallenge = false;
         let searchQuery = '';
         let activeFilter = 'all';
+        let newWordsFilter = false; // Separate state for new words filter
+        let hardWordsFilter = false; // Separate state for hard words filter
+        let mediumWordsFilter = false; // Separate state for medium words filter
         let progress = JSON.parse(localStorage.getItem('hebrewProgress') || '{}');
 
         // DOM elements
@@ -1930,16 +1936,62 @@
         function handleFilterClick(e) {
             if (!e.target.classList.contains('filter-btn')) return;
             
-            // Remove active class from all filter buttons
-            filterControls.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            const clickedFilter = e.target.dataset.filter;
             
-            // Add active class to clicked button
-            e.target.classList.add('active');
-            activeFilter = e.target.dataset.filter;
+            if (clickedFilter === 'new') {
+                // Toggle new words filter independently
+                newWordsFilter = !newWordsFilter;
+                e.target.classList.toggle('active', newWordsFilter);
+                
+                // If enabling new words, disable hard/medium filters (mutually exclusive)
+                if (newWordsFilter) {
+                    hardWordsFilter = false;
+                    mediumWordsFilter = false;
+                    document.querySelector('[data-filter="hard"]').classList.remove('active');
+                    document.querySelector('[data-filter="medium"]').classList.remove('active');
+                }
+            } else if (clickedFilter === 'hard') {
+                // Toggle hard words filter
+                hardWordsFilter = !hardWordsFilter;
+                e.target.classList.toggle('active', hardWordsFilter);
+                
+                // If enabling hard words, disable new words filter (mutually exclusive)
+                if (hardWordsFilter) {
+                    newWordsFilter = false;
+                    document.querySelector('[data-filter="new"]').classList.remove('active');
+                }
+            } else if (clickedFilter === 'medium') {
+                // Toggle medium words filter
+                mediumWordsFilter = !mediumWordsFilter;
+                e.target.classList.toggle('active', mediumWordsFilter);
+                
+                // If enabling medium words, disable new words filter (mutually exclusive)
+                if (mediumWordsFilter) {
+                    newWordsFilter = false;
+                    document.querySelector('[data-filter="new"]').classList.remove('active');
+                }
+            } else {
+                // Handle part of speech filters
+                if (clickedFilter === activeFilter) {
+                    // Clicking the same filter deactivates it
+                    activeFilter = 'all';
+                } else {
+                    activeFilter = clickedFilter;
+                }
+                
+                // Update visual state for part of speech filters
+                filterControls.querySelectorAll('.filter-btn').forEach(btn => {
+                    if (!['new', 'hard', 'medium'].includes(btn.dataset.filter)) {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                if (activeFilter !== 'all') {
+                    e.target.classList.add('active');
+                }
+            }
             
-            // Apply filter
+            // Apply combined filters
             if (searchQuery) {
                 filterLessonsBySearch();
             } else {
@@ -1956,9 +2008,19 @@
             Object.entries(vocabulary).forEach(([lessonKey, words]) => {
                 let filteredWords = words;
                 
-                // Apply part of speech filter first
+                // Apply part of speech filter if not "all"
                 if (activeFilter !== 'all') {
                     filteredWords = filteredWords.filter(word => word.partOfSpeech === activeFilter);
+                }
+                
+                // Apply difficulty filters
+                if (newWordsFilter || hardWordsFilter || mediumWordsFilter) {
+                    filteredWords = filteredWords.filter(word => {
+                        if (newWordsFilter && isNewWord(word)) return true;
+                        if (hardWordsFilter && isHardWord(word)) return true;
+                        if (mediumWordsFilter && isMediumWord(word)) return true;
+                        return false;
+                    });
                 }
                 
                 // Then apply search filter
@@ -1985,9 +2047,21 @@
                 }
             });
             
-            // Update search results
+            // Create filter description for search results
+            let filterDescription = '';
+            const activeFilters = [];
+            
+            if (newWordsFilter) activeFilters.push('new');
+            if (hardWordsFilter) activeFilters.push('hard');
+            if (mediumWordsFilter) activeFilters.push('medium');
+            if (activeFilter !== 'all') activeFilters.push(activeFilter);
+            
+            if (activeFilters.length > 0) {
+                filterDescription = ` ${activeFilters.join(' ')}`;
+            }
+            
             updateSearchResults(matchingWords.length > 0 ? 
-                `Found ${matchingWords.length} matching word${matchingWords.length !== 1 ? 's' : ''} across ${matchingLessons.size} lesson${matchingLessons.size !== 1 ? 's' : ''}` :
+                `Found ${matchingWords.length} matching${filterDescription} word${matchingWords.length !== 1 ? 's' : ''} across ${matchingLessons.size} lesson${matchingLessons.size !== 1 ? 's' : ''}` :
                 'No matching words found');
         }
 
@@ -2053,7 +2127,23 @@
             }
             
             const allWords = vocabulary[lessonId];
-            let filteredWords = getFilteredWordsFromLesson(allWords);
+            let filteredWords = allWords;
+            
+            // Apply the same filters that are currently active
+            // Apply part of speech filter if not "all"
+            if (activeFilter !== 'all') {
+                filteredWords = filteredWords.filter(word => word.partOfSpeech === activeFilter);
+            }
+            
+            // Apply difficulty filters
+            if (newWordsFilter || hardWordsFilter || mediumWordsFilter) {
+                filteredWords = filteredWords.filter(word => {
+                    if (newWordsFilter && isNewWord(word)) return true;
+                    if (hardWordsFilter && isHardWord(word)) return true;
+                    if (mediumWordsFilter && isMediumWord(word)) return true;
+                    return false;
+                });
+            }
             
             // Apply search filter if active
             if (searchQuery) {
@@ -2064,10 +2154,11 @@
                 });
             }
             
-            if (activeFilter === 'all' && !searchQuery) {
-                label.textContent = `Lesson ${lessonNumber}`;
-            } else {
+            // Show count only when filters are active
+            if (activeFilter !== 'all' || newWordsFilter || hardWordsFilter || mediumWordsFilter || searchQuery) {
                 label.textContent = `Lesson ${lessonNumber} (${filteredWords.length})`;
+            } else {
+                label.textContent = `Lesson ${lessonNumber}`;
             }
         }
 
@@ -2530,12 +2621,43 @@
             return total;
         }
 
-        // Filter words from a lesson based on active filter
+        // Filter words from a lesson based on active filters
         function getFilteredWordsFromLesson(lessonWords) {
-            if (activeFilter === 'all') {
-                return lessonWords;
+            let filteredWords = lessonWords;
+            
+            // Apply part of speech filter first (if not "all")
+            if (activeFilter !== 'all') {
+                filteredWords = filteredWords.filter(word => word.partOfSpeech === activeFilter);
             }
-            return lessonWords.filter(word => word.partOfSpeech === activeFilter);
+            
+            // Apply difficulty filters (these can be combined with each other)
+            let difficultyFiltered = false;
+            if (newWordsFilter || hardWordsFilter || mediumWordsFilter) {
+                difficultyFiltered = true;
+                filteredWords = filteredWords.filter(word => {
+                    if (newWordsFilter && isNewWord(word)) return true;
+                    if (hardWordsFilter && isHardWord(word)) return true;
+                    if (mediumWordsFilter && isMediumWord(word)) return true;
+                    return false;
+                });
+            }
+            
+            return filteredWords;
+        }
+
+        // Helper function to check if a word is new (not studied yet)
+        function isNewWord(word) {
+            return !progress[word.hebrew];
+        }
+
+        // Helper function to check if a word is marked as hard
+        function isHardWord(word) {
+            return progress[word.hebrew] && progress[word.hebrew].difficulty === 'hard';
+        }
+
+        // Helper function to check if a word is marked as medium
+        function isMediumWord(word) {
+            return progress[word.hebrew] && progress[word.hebrew].difficulty === 'medium';
         }
 
         // Spaced Repetition System functions
