@@ -1000,8 +1000,10 @@
             .flashcard {
                 width: 90vw;
                 height: 50vh;
-                max-width: 400px;
-                max-height: 300px;
+                height: 50dvh;
+                max-width: 500px;
+                max-height: 60vh;
+                max-height: 60dvh;
             }
 
             .hebrew-text {
@@ -1776,14 +1778,14 @@
                 <span class="card-counter" id="cardCounter">1 / 10</span>
             </div>
 
-            <div class="mobile-instructions-toggle">
+            <div class="mobile-instructions-toggle" style="display: none;">
                 <button class="mobile-instructions-btn" id="mobileInstructionsBtn">
                     <span>ℹ Instructions</span>
                     <span class="toggle-icon">▼</span>
                 </button>
             </div>
 
-            <div class="instructions" id="studyInstructions">
+            <div class="instructions" id="studyInstructions" style="display: none;">
                 Click card or press Space to flip • Use arrow keys or click buttons to rate difficulty • Use Previous/Next to navigate • Press Esc to return
             </div>
 
