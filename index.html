@@ -997,16 +997,43 @@
                 padding: 1rem;
             }
 
-            /* Fix flashcard proportions for better landscape orientation */
+            /* Make flashcards occupy whole screen on mobile */
             .flashcard {
-                width: 90vw;
-                height: 60vw;
-                max-width: 500px;
-                max-height: 350px;
+                width: 95vw;
+                height: 70vh;
+                max-width: none;
+                max-height: none;
             }
 
-            /* Hide redundant session info on mobile */
-            .session-info {
+            /* Hide study header on mobile for more flashcard space */
+            .study-header {
+                display: none;
+            }
+
+            /* Hide navigation controls on mobile for more space */
+            .navigation-controls {
+                display: none;
+            }
+
+            /* Show only back button as floating button */
+            .study-view::before {
+                content: "← Back";
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                z-index: 1000;
+                cursor: pointer;
+            }
+
+            /* Hide redundant mastery indicators on back of card */
+            .card-back .mastery-badge,
+            .card-back .difficulty-indicator {
                 display: none;
             }
 
