@@ -976,13 +976,24 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            /* Full-screen mobile layout */
+            body {
+                padding: 0;
+                margin: 0;
+            }
+
             .app-container {
-                border-radius: 16px;
-                margin: 10px;
+                border-radius: 0;
+                margin: 0;
+                width: 100vw;
+                height: 100vh;
+                min-height: 100vh;
+                max-width: none;
             }
 
             .header {
                 padding: 2rem 1rem;
+                border-radius: 0;
             }
 
             .header h1 {
@@ -995,15 +1006,21 @@
 
             .study-view {
                 padding: 1rem;
+                height: 100vh;
+                overflow-y: auto;
             }
 
+            /* Landscape-oriented flashcards for mobile */
             .flashcard {
                 width: 90vw;
-                height: 50vh;
-                height: 50dvh;
+                height: 60vw;
                 max-width: 500px;
-                max-height: 60vh;
-                max-height: 60dvh;
+                max-height: 350px;
+            }
+
+            /* Hide redundant session info on mobile */
+            .session-info {
+                display: none;
             }
 
             .hebrew-text {
