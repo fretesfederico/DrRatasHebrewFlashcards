@@ -1021,8 +1021,55 @@
                 grid-template-columns: 1fr 1fr;
             }
 
+            /* Optimize lesson checkboxes for mobile - show just numbers */
             .lesson-checkboxes {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 10px;
+            }
+
+            .lesson-checkbox {
+                padding: 12px 8px;
+                min-width: 60px;
+                text-align: center;
+            }
+
+            .lesson-checkbox label {
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+
+            /* Hide lesson text, show only numbers on mobile */
+            .lesson-checkbox label {
+                font-size: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                flex-direction: column;
+            }
+
+            .lesson-checkbox label::before {
+                content: attr(data-lesson-number);
+                font-size: 0.9rem;
+                font-weight: 600;
+                display: block;
+                line-height: 1.2;
+            }
+
+            .lesson-checkbox label::after {
+                content: attr(data-word-count);
+                font-size: 0.7rem;
+                font-weight: 500;
+                color: var(--gray-600);
+                display: block;
+                line-height: 1;
+                margin-top: 2px;
+            }
+
+            /* Hide word count when not needed */
+            .lesson-checkbox label[data-word-count=""]::after {
+                display: none;
             }
 
             /* Fix progress details button positioning */
@@ -2499,6 +2546,7 @@
             
             if (!vocabulary[lessonId]) {
                 label.textContent = `Lesson ${lessonNumber}`;
+                label.setAttribute('data-word-count', '');
                 return;
             }
             
@@ -2530,11 +2578,13 @@
                 });
             }
             
-            // Show count only when filters are active
+            // Show count when filters are active
             if (activeFilter !== 'all' || newWordsFilter || hardWordsFilter || mediumWordsFilter || searchQuery) {
                 label.textContent = `Lesson ${lessonNumber} (${filteredWords.length})`;
+                label.setAttribute('data-word-count', `(${filteredWords.length})`);
             } else {
                 label.textContent = `Lesson ${lessonNumber}`;
+                label.setAttribute('data-word-count', '');
             }
         }
 
@@ -2640,7 +2690,7 @@
                 lessonDiv.className = 'lesson-checkbox';
                 lessonDiv.innerHTML = `
                     <input type="checkbox" id="lesson${i}" value="lesson${i}">
-                    <label for="lesson${i}">Lesson ${i}</label>
+                    <label for="lesson${i}" data-lesson-number="${i}">Lesson ${i}</label>
                 `;
                 
                 // Make entire lesson box clickable
